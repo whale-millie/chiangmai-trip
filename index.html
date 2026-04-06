@@ -1137,6 +1137,92 @@ section:nth-child(even) {
   border-color: var(--teal);
 }
 
+/* ===== Route Panel ===== */
+.route-panel {
+  margin-top: 20px;
+  background: var(--card-bg);
+  border: 2px solid var(--orange);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  box-shadow: var(--card-shadow);
+}
+
+.route-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  font-size: 1.05rem;
+  color: var(--orange-dark);
+}
+
+.route-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 0;
+}
+
+.route-step + .route-step {
+  border-top: 1px dashed var(--border);
+}
+
+.route-step-num {
+  min-width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--orange);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.route-step-info {
+  flex: 1;
+}
+
+.route-step-name {
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.route-step-detail {
+  font-size: 0.82rem;
+  color: var(--text-light);
+  margin-top: 2px;
+}
+
+.route-step-move {
+  font-size: 0.78rem;
+  color: var(--orange);
+  font-weight: 600;
+  margin-top: 6px;
+  padding: 4px 0;
+}
+
+.route-panel-total {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 2px solid var(--border);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text);
+}
+
+.map-spot.route-active circle {
+  stroke: var(--orange);
+  stroke-width: 3;
+  filter: url(#mapShadow);
+}
+
+.map-spot.route-dimmed {
+  opacity: 0.2;
+}
+
 /* ===== Footer ===== */
 .footer {
   text-align: center;
@@ -2437,7 +2523,7 @@ section:nth-child(even) {
             <span class="food-meta-tag">&#x1F4CD; 숙소 픽업</span>
           </div>
           <div class="food-card-recommend">&#x26A0;&#xFE0F; 3일 전 예약 필수 | Day 2 추천</div>
-          <a class="food-card-map" href="https://www.google.com/maps/search/Skyline+Adventure+Chiang+Mai" target="_blank" rel="noopener">&#x1F4CD; 지도에서 보기</a>
+          <a class="food-card-map" href="#map" onclick="showRoute('zipline');return false;">&#x1F5FA; 지도에서 동선 보기</a>
         </div>
       </div>
 
@@ -2455,7 +2541,7 @@ section:nth-child(even) {
             <span class="food-meta-tag">&#x1F4CD; 숙소 픽업</span>
           </div>
           <div class="food-card-recommend">&#x26A0;&#xFE0F; 사전 예약 필수 | Day 3 추천</div>
-          <a class="food-card-map" href="https://www.google.com/maps/search/Elephant+Sanctuary+Chiang+Mai" target="_blank" rel="noopener">&#x1F4CD; 지도에서 보기</a>
+          <a class="food-card-map" href="#map" onclick="showRoute('elephant');return false;">&#x1F5FA; 지도에서 동선 보기</a>
         </div>
       </div>
 
@@ -2473,7 +2559,7 @@ section:nth-child(even) {
             <span class="food-meta-tag">&#x1F4CD; 숙소 픽업</span>
           </div>
           <div class="food-card-recommend">&#x26A0;&#xFE0F; 참가자 확정 필요 | Day 3 추천</div>
-          <a class="food-card-map" href="https://www.google.com/maps/search/Wat+Rong+Khun+Chiang+Rai" target="_blank" rel="noopener">&#x1F4CD; 지도에서 보기</a>
+          <a class="food-card-map" href="#map" onclick="showRoute('chiangrai');return false;">&#x1F5FA; 지도에서 동선 보기</a>
         </div>
       </div>
 
@@ -2491,7 +2577,7 @@ section:nth-child(even) {
             <span class="food-meta-tag">&#x1F4CD; 숙소 픽업</span>
           </div>
           <div class="food-card-recommend">&#x26A0;&#xFE0F; 사전 예약 필수 | Day 2 or 4</div>
-          <a class="food-card-map" href="https://www.google.com/maps/search/Cooking+Class+Chiang+Mai" target="_blank" rel="noopener">&#x1F4CD; 지도에서 보기</a>
+          <a class="food-card-map" href="#map" onclick="showRoute('cooking');return false;">&#x1F5FA; 지도에서 동선 보기</a>
         </div>
       </div>
 
@@ -2509,7 +2595,7 @@ section:nth-child(even) {
             <span class="food-meta-tag">&#x1F465; 2명 이상</span>
           </div>
           <div class="food-card-recommend">Day 2 추천 | 오전에 야외, 오후 스콜 회피</div>
-          <a class="food-card-map" href="https://www.google.com/maps/dir/Wat+Chiang+Man/Wat+Chedi+Luang/Wat+Phan+Tao/Wat+Phra+Singh+Chiang+Mai" target="_blank" rel="noopener">&#x1F4CD; 도보 동선 보기</a>
+          <a class="food-card-map" href="#map" onclick="showRoute('temple-walk');return false;">&#x1F5FA; 지도에서 동선 보기</a>
         </div>
       </div>
 
@@ -2527,7 +2613,7 @@ section:nth-child(even) {
             <span class="food-meta-tag">&#x1F465; 3명 이상 (그랩 쉐어)</span>
           </div>
           <div class="food-card-recommend">Day 4 추천 | 그랩 쉐어로 이동</div>
-          <a class="food-card-map" href="https://www.google.com/maps/dir/Chiang+Mai+Old+City/Wat+Phra+That+Doi+Suthep/Mon+Cham+Chiang+Mai" target="_blank" rel="noopener">&#x1F4CD; 동선 보기</a>
+          <a class="food-card-map" href="#map" onclick="showRoute('doi-suthep');return false;">&#x1F5FA; 지도에서 동선 보기</a>
         </div>
       </div>
 
@@ -2545,7 +2631,7 @@ section:nth-child(even) {
             <span class="food-meta-tag">&#x1F465; 3명 이상 (그랩 쉐어)</span>
           </div>
           <div class="food-card-recommend">Day 4 추천 | 여벌 옷/수건 준비</div>
-          <a class="food-card-map" href="https://www.google.com/maps/search/Bua+Tong+Sticky+Waterfalls+Chiang+Mai" target="_blank" rel="noopener">&#x1F4CD; 지도에서 보기</a>
+          <a class="food-card-map" href="#map" onclick="showRoute('sticky-falls');return false;">&#x1F5FA; 지도에서 동선 보기</a>
         </div>
       </div>
 
@@ -2563,7 +2649,7 @@ section:nth-child(even) {
             <span class="food-meta-tag">&#x1F465; 2명 이상</span>
           </div>
           <div class="food-card-recommend">Day 3 추천 | 님만 카페 투어 겸</div>
-          <a class="food-card-map" href="https://www.google.com/maps/dir/One+Nimman/Maya+Lifestyle+Shopping+Center+Chiang+Mai/GRAPH+Nimman" target="_blank" rel="noopener">&#x1F4CD; 님만 동선 보기</a>
+          <a class="food-card-map" href="#map" onclick="showRoute('nimman-cafe');return false;">&#x1F5FA; 지도에서 동선 보기</a>
         </div>
       </div>
 
@@ -2586,7 +2672,7 @@ section:nth-child(even) {
             <span class="food-meta-tag">&#x23F0; 17:00~22:00</span>
             <span class="food-meta-tag">&#x1F4CD; Wualai Rd</span>
           </div>
-          <a class="food-card-map" href="https://www.google.com/maps/search/Wualai+Walking+Street+Chiang+Mai" target="_blank" rel="noopener">&#x1F4CD; 지도에서 보기</a>
+          <a class="food-card-map" href="#map" onclick="showRoute('saturday-market');return false;">&#x1F5FA; 지도에서 동선 보기</a>
         </div>
       </div>
 
@@ -2603,7 +2689,7 @@ section:nth-child(even) {
             <span class="food-meta-tag">&#x23F0; 16:00~22:00</span>
             <span class="food-meta-tag">&#x1F4CD; Ratchadamnoen Rd</span>
           </div>
-          <a class="food-card-map" href="https://www.google.com/maps/dir/Tha+Phae+Gate/Wat+Phra+Singh+Chiang+Mai" target="_blank" rel="noopener">&#x1F4CD; 마켓 동선 보기</a>
+          <a class="food-card-map" href="#map" onclick="showRoute('sunday-market');return false;">&#x1F5FA; 지도에서 동선 보기</a>
         </div>
       </div>
 
@@ -2619,7 +2705,7 @@ section:nth-child(even) {
             <span class="food-meta-tag">&#x23F0; 18:00~23:00</span>
             <span class="food-meta-tag">&#x1F4CD; Chang Khlan Rd</span>
           </div>
-          <a class="food-card-map" href="https://www.google.com/maps/search/Chiang+Mai+Night+Bazaar" target="_blank" rel="noopener">&#x1F4CD; 지도에서 보기</a>
+          <a class="food-card-map" href="#map" onclick="showRoute('night-bazaar');return false;">&#x1F5FA; 지도에서 동선 보기</a>
         </div>
       </div>
 
@@ -2635,7 +2721,7 @@ section:nth-child(even) {
             <span class="food-meta-tag">&#x23F0; 06:00~18:00</span>
             <span class="food-meta-tag">&#x1F4CD; Wichayanon Rd</span>
           </div>
-          <a class="food-card-map" href="https://www.google.com/maps/search/Warorot+Market+Chiang+Mai" target="_blank" rel="noopener">&#x1F4CD; 지도에서 보기</a>
+          <a class="food-card-map" href="#map" onclick="showRoute('warorot');return false;">&#x1F5FA; 지도에서 동선 보기</a>
         </div>
       </div>
 
@@ -2656,7 +2742,7 @@ section:nth-child(even) {
             <span class="food-meta-tag">&#x1F4B0; 라테 118THB~</span>
             <span class="food-meta-tag">&#x1F4CD; Nimman Soi 3</span>
           </div>
-          <a class="food-card-map" href="https://www.google.com/maps/search/Ristr8to+Nimman+Chiang+Mai" target="_blank" rel="noopener">&#x1F4CD; 지도에서 보기</a>
+          <a class="food-card-map" href="#map" onclick="showRoute('ristr8to');return false;">&#x1F5FA; 지도에서 보기</a>
         </div>
       </div>
 
@@ -2671,7 +2757,7 @@ section:nth-child(even) {
             <span class="food-meta-tag">&#x1F4B0; 콜드브루 250THB~</span>
             <span class="food-meta-tag">&#x1F4CD; Nimman 일대</span>
           </div>
-          <a class="food-card-map" href="https://www.google.com/maps/search/GRAPH+Coffee+Chiang+Mai" target="_blank" rel="noopener">&#x1F4CD; 지도에서 보기</a>
+          <a class="food-card-map" href="#map" onclick="showRoute('graph');return false;">&#x1F5FA; 지도에서 보기</a>
         </div>
       </div>
 
@@ -2687,7 +2773,7 @@ section:nth-child(even) {
             <span class="food-meta-tag">&#x1F4CD; 올드타운 (왓 프라싱 옆)</span>
             <span class="food-meta-tag">&#x23F0; 08:00~17:30</span>
           </div>
-          <a class="food-card-map" href="https://www.google.com/maps/search/Akha+Ama+Coffee+Phra+Singh+Chiang+Mai" target="_blank" rel="noopener">&#x1F4CD; 지도에서 보기</a>
+          <a class="food-card-map" href="#map" onclick="showRoute('akha-ama');return false;">&#x1F5FA; 지도에서 보기</a>
         </div>
       </div>
 
@@ -2703,7 +2789,7 @@ section:nth-child(even) {
             <span class="food-meta-tag">&#x1F4CD; Soi Wat U Mong</span>
             <span class="food-meta-tag">&#x26A0;&#xFE0F; 월요일 휴무</span>
           </div>
-          <a class="food-card-map" href="https://www.google.com/maps/search/Baan+Kang+Wat+Chiang+Mai" target="_blank" rel="noopener">&#x1F4CD; 지도에서 보기</a>
+          <a class="food-card-map" href="#map" onclick="showRoute('baan-kang-wat');return false;">&#x1F5FA; 지도에서 보기</a>
         </div>
       </div>
 
@@ -2718,7 +2804,7 @@ section:nth-child(even) {
             <span class="food-meta-tag">&#x23F0; 11:00~21:00</span>
             <span class="food-meta-tag">&#x1F4CD; Nimmanahaeminda Rd</span>
           </div>
-          <a class="food-card-map" href="https://www.google.com/maps?cid=2051551831623895628" target="_blank" rel="noopener">&#x1F4CD; 지도에서 보기</a>
+          <a class="food-card-map" href="#map" onclick="showRoute('one-nimman');return false;">&#x1F5FA; 지도에서 보기</a>
         </div>
       </div>
 
@@ -2734,7 +2820,7 @@ section:nth-child(even) {
             <span class="food-meta-tag">&#x1F4CD; 올드타운 북문(창푸악)</span>
             <span class="food-meta-tag">&#x1F4B0; 맥주 80THB~</span>
           </div>
-          <a class="food-card-map" href="https://www.google.com/maps/search/North+Gate+Jazz+Co-Op+Chiang+Mai" target="_blank" rel="noopener">&#x1F4CD; 지도에서 보기</a>
+          <a class="food-card-map" href="#map" onclick="showRoute('jazz');return false;">&#x1F5FA; 지도에서 보기</a>
         </div>
       </div>
 
@@ -2770,7 +2856,7 @@ section:nth-child(even) {
             <span class="food-meta-tag">&#x1F4CD; 시내에서 40분</span>
             <span class="food-meta-tag">&#x1F697; 그랩 이동</span>
           </div>
-          <a class="food-card-map" href="https://www.google.com/maps/search/Doi+Saket+Hot+Spring+Chiang+Mai" target="_blank" rel="noopener">&#x1F4CD; 지도에서 보기</a>
+          <a class="food-card-map" href="#map" onclick="showRoute('hot-spring');return false;">&#x1F5FA; 지도에서 보기</a>
         </div>
       </div>
 
@@ -3312,6 +3398,8 @@ section:nth-child(even) {
 
           <!-- 팀원 동선 표시용 그룹 (JS에서 동적 생성) -->
           <g id="mapTeamRoutes"></g>
+          <!-- 동선 하이라이트 오버레이 -->
+          <g id="mapRouteOverlay"></g>
         </svg>
 
         <div class="map-tooltip" id="mapTooltip">
@@ -3319,6 +3407,16 @@ section:nth-child(even) {
           <div class="map-tooltip-cat" id="ttCat"></div>
           <div class="map-tooltip-detail" id="ttDetail"></div>
         </div>
+      </div>
+
+      <!-- 동선 정보 패널 -->
+      <div class="route-panel" id="routePanel" style="display:none;">
+        <div class="route-panel-header">
+          <strong id="routePanelTitle"></strong>
+          <button onclick="clearRoute()" style="background:none;border:none;font-size:1.2rem;cursor:pointer;color:var(--text-light);">&times;</button>
+        </div>
+        <div id="routePanelSteps"></div>
+        <div class="route-panel-total" id="routePanelTotal"></div>
       </div>
     </div>
   </div>
@@ -4823,6 +4921,249 @@ function clearMapHighlights() {
     }, { passive: false });
   });
 })();
+
+// ===== 동선 보기 시스템 =====
+var ROUTES = {
+  'temple-walk': {
+    title: '구시가 사원 도보 탐방',
+    spots: ['왓 치앙만', '왓 체디루앙', '왓 프라싱'],
+    moves: ['도보 10분', '도보 5분'],
+    totalTime: '약 2~3시간',
+    totalDist: '도보 약 2km'
+  },
+  'doi-suthep': {
+    title: '도이수텝 사원 + 몬쨈',
+    spots: ['도이수텝 사원', '몬쨈'],
+    moves: ['차량 30분'],
+    totalTime: '약 4~5시간 (이동 포함)',
+    totalDist: '올드타운에서 편도 40분'
+  },
+  'zipline': {
+    title: '스카이라인 짚라인 어드벤처',
+    spots: ['짚라인 어드벤처'],
+    moves: [],
+    totalTime: '약 4~5시간 (픽업 포함)',
+    totalDist: '숙소 픽업/드랍'
+  },
+  'elephant': {
+    title: '코끼리 보호소 체험',
+    spots: ['코끼리 보호소'],
+    moves: [],
+    totalTime: '약 5~6시간 (픽업 포함)',
+    totalDist: '숙소 픽업/드랍'
+  },
+  'chiangrai': {
+    title: '치앙라이 투어 (종일)',
+    spots: [],
+    moves: [],
+    totalTime: '약 12시간 (07:00~20:00)',
+    totalDist: '치앙마이↔치앙라이 편도 3시간'
+  },
+  'cooking': {
+    title: '쿠킹클래스',
+    spots: [],
+    moves: [],
+    totalTime: '약 4~5시간 (픽업 포함)',
+    totalDist: '숙소 픽업/드랍'
+  },
+  'sticky-falls': {
+    title: '스티키 폭포',
+    spots: ['스티키 폭포'],
+    moves: [],
+    totalTime: '약 3~4시간 (이동 포함)',
+    totalDist: '올드타운에서 편도 1시간'
+  },
+  'nimman-cafe': {
+    title: '님만해민 카페 투어',
+    spots: ['리스트렛토 랩', '님만해민 카페거리', 'Maya 쇼핑몰'],
+    moves: ['도보 3분', '도보 5분'],
+    totalTime: '약 2~3시간',
+    totalDist: '도보 약 1.5km'
+  },
+  'saturday-market': {
+    title: '새터데이 마켓',
+    spots: ['워킹스트리트'],
+    moves: [],
+    totalTime: '약 2~3시간',
+    totalDist: '올드타운 남쪽 Wualai Rd'
+  },
+  'sunday-market': {
+    title: '선데이 마켓',
+    spots: ['왓 프라싱', '왓 체디루앙'],
+    moves: ['도보 (마켓 따라 이동)'],
+    totalTime: '약 2~3시간',
+    totalDist: '타페게이트 ~ 왓 프라싱 1km'
+  },
+  'night-bazaar': {
+    title: '나이트 바자',
+    spots: ['나이트 바자'],
+    moves: [],
+    totalTime: '약 2~3시간',
+    totalDist: '올드타운 동쪽 Chang Khlan Rd'
+  },
+  'warorot': {
+    title: '와로롯 마켓',
+    spots: ['와로롯 마켓'],
+    moves: [],
+    totalTime: '약 1~2시간',
+    totalDist: '올드타운에서 도보 15분'
+  },
+  'ristr8to': {
+    title: 'Ristr8to Original',
+    spots: ['리스트렛토 랩'],
+    moves: [],
+    totalTime: '약 1시간',
+    totalDist: 'Nimman Soi 3'
+  },
+  'graph': {
+    title: 'GRAPH Coffee',
+    spots: ['님만해민 카페거리'],
+    moves: [],
+    totalTime: '약 1시간',
+    totalDist: '님만해민 일대'
+  },
+  'akha-ama': {
+    title: 'Akha Ama Coffee',
+    spots: ['왓 프라싱'],
+    moves: [],
+    totalTime: '약 1시간',
+    totalDist: '왓 프라싱 바로 옆'
+  },
+  'baan-kang-wat': {
+    title: '반캉왓 예술가 마을',
+    spots: ['반캉왓'],
+    moves: [],
+    totalTime: '약 1~2시간',
+    totalDist: '왓 우몽 인근'
+  },
+  'one-nimman': {
+    title: 'One Nimman',
+    spots: ['님만해민 카페거리', 'Maya 쇼핑몰'],
+    moves: ['도보 2분'],
+    totalTime: '약 1~2시간',
+    totalDist: 'Nimmanahaeminda Rd'
+  },
+  'jazz': {
+    title: 'North Gate Jazz Co-Op',
+    spots: ['창푸악 게이트 야시장'],
+    moves: [],
+    totalTime: '저녁 19:00~24:00',
+    totalDist: '올드타운 북문'
+  },
+  'massage': {
+    title: '태국 전통 마사지',
+    spots: [],
+    moves: [],
+    totalTime: '1~2시간',
+    totalDist: '올드타운 & 님만 곳곳'
+  },
+  'hot-spring': {
+    title: '도이사켓 온천',
+    spots: [],
+    moves: [],
+    totalTime: '약 3~4시간 (이동 포함)',
+    totalDist: '시내에서 차로 40분'
+  },
+  'pool': {
+    title: '숙소 수영장 + 카페',
+    spots: [],
+    moves: [],
+    totalTime: '오후 자유',
+    totalDist: '숙소'
+  }
+};
+
+function showRoute(routeId) {
+  var route = ROUTES[routeId];
+  if (!route) return;
+
+  // 지도 섹션으로 스크롤
+  var mapSection = document.getElementById('map');
+  mapSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  var allSpots = document.querySelectorAll('.map-spot');
+  var overlay = document.getElementById('mapRouteOverlay');
+  overlay.innerHTML = '';
+
+  if (route.spots.length > 0) {
+    // 스팟 하이라이트/흐리게
+    var activeCoords = [];
+    allSpots.forEach(function(spot) {
+      var name = spot.getAttribute('data-name');
+      var isActive = route.spots.some(function(s) { return name.indexOf(s) !== -1; });
+      spot.classList.toggle('route-active', isActive);
+      spot.classList.toggle('route-dimmed', !isActive);
+      if (isActive) {
+        var circle = spot.querySelector('circle');
+        if (circle) {
+          activeCoords.push({ x: parseFloat(circle.getAttribute('cx')), y: parseFloat(circle.getAttribute('cy')), name: name });
+        }
+      }
+    });
+
+    // 순서 유지하며 라인 그리기
+    var ordered = [];
+    route.spots.forEach(function(sName) {
+      activeCoords.forEach(function(c) {
+        if (c.name.indexOf(sName) !== -1 && ordered.indexOf(c) === -1) ordered.push(c);
+      });
+    });
+
+    for (var i = 0; i < ordered.length - 1; i++) {
+      var line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      line.setAttribute('x1', ordered[i].x);
+      line.setAttribute('y1', ordered[i].y);
+      line.setAttribute('x2', ordered[i+1].x);
+      line.setAttribute('y2', ordered[i+1].y);
+      line.setAttribute('stroke', '#E87B35');
+      line.setAttribute('stroke-width', '3');
+      line.setAttribute('stroke-dasharray', '8,4');
+      line.setAttribute('opacity', '0.9');
+      line.setAttribute('marker-end', 'url(#arrowhead)');
+      overlay.appendChild(line);
+    }
+  } else {
+    // spots가 없는 루트(픽업형)는 전체 희미하게만
+    allSpots.forEach(function(spot) {
+      spot.classList.remove('route-active');
+      spot.classList.remove('route-dimmed');
+    });
+  }
+
+  // 패널 표시
+  var panel = document.getElementById('routePanel');
+  var titleEl = document.getElementById('routePanelTitle');
+  var stepsEl = document.getElementById('routePanelSteps');
+  var totalEl = document.getElementById('routePanelTotal');
+
+  titleEl.textContent = '📍 ' + route.title;
+  stepsEl.innerHTML = '';
+
+  if (route.spots.length > 0) {
+    route.spots.forEach(function(s, idx) {
+      var step = document.createElement('div');
+      step.className = 'route-step';
+      var moveHtml = (idx < route.moves.length) ? '<div class="route-step-move">↓ ' + route.moves[idx] + '</div>' : '';
+      step.innerHTML = '<div class="route-step-num">' + (idx + 1) + '</div>' +
+        '<div class="route-step-info"><div class="route-step-name">' + s + '</div>' + moveHtml + '</div>';
+      stepsEl.appendChild(step);
+    });
+  } else {
+    stepsEl.innerHTML = '<div class="route-step"><div class="route-step-info"><div class="route-step-detail">숙소 픽업/드랍 또는 자유 이동</div></div></div>';
+  }
+
+  totalEl.innerHTML = '⏱ ' + route.totalTime + ' &nbsp;|&nbsp; 📏 ' + route.totalDist;
+  panel.style.display = 'block';
+}
+
+function clearRoute() {
+  document.getElementById('routePanel').style.display = 'none';
+  document.getElementById('mapRouteOverlay').innerHTML = '';
+  document.querySelectorAll('.map-spot').forEach(function(spot) {
+    spot.classList.remove('route-active');
+    spot.classList.remove('route-dimmed');
+  });
+}
 </script>
 
 </body>
