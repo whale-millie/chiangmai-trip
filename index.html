@@ -1007,11 +1007,22 @@ section:nth-child(even) {
 .food-card {
   background: var(--card-bg);
   border-radius: var(--radius);
-  padding: 28px;
+  padding: 0;
   box-shadow: var(--card-shadow);
   transition: var(--transition);
   position: relative;
   overflow: hidden;
+}
+
+.food-card-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.food-card-body {
+  padding: 24px 28px 28px;
 }
 
 .food-card:hover {
@@ -1102,6 +1113,28 @@ section:nth-child(even) {
 
 .food-source a:hover {
   text-decoration: underline;
+}
+
+.food-card-map {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 14px;
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.82rem;
+  color: var(--teal);
+  font-weight: 600;
+  text-decoration: none;
+  margin-top: 12px;
+  transition: var(--transition);
+}
+
+.food-card-map:hover {
+  background: var(--teal);
+  color: #fff;
+  border-color: var(--teal);
 }
 
 /* ===== Footer ===== */
@@ -3278,105 +3311,129 @@ section:nth-child(even) {
     <div class="food-grid reveal">
 
       <div class="food-card">
-        <span class="food-card-badge bib-gourmand">&#x1F534; Bib Gourmand</span>
-        <div class="food-card-name">Kao Soy Nimman (&#xC874;&#xC18C;&#xC774; &#xB2D8;&#xB9CC;)</div>
-        <div class="food-card-cuisine">&#x1F35C; 북부 태국 누들 &middot; 카오소이 전문</div>
-        <div class="food-card-desc">
-          치앙마이 대표 음식 카오소이의 성지. 소프트쉘 크랩 카오소이가 시그니처 메뉴로,
-          코코넛 커리 베이스에 바삭한 면과 부드러운 면의 조합이 일품.
-          소고기/돼지/닭/해산물 등 다양한 토핑 선택 가능.
+        <img class="food-card-img" src="images/food/kao-soy-nimman.jpg" alt="Kao Soy Nimman 카오소이" loading="lazy">
+        <div class="food-card-body">
+          <span class="food-card-badge bib-gourmand">&#x1F534; Bib Gourmand</span>
+          <div class="food-card-name">Kao Soy Nimman (카오소이 님만)</div>
+          <div class="food-card-cuisine">&#x1F35C; 북부 태국 누들 &middot; 카오소이 전문</div>
+          <div class="food-card-desc">
+            치앙마이 대표 음식 카오소이의 성지. 소프트쉘 크랩 카오소이가 시그니처 메뉴로,
+            코코넛 커리 베이스에 바삭한 면과 부드러운 면의 조합이 일품.
+            소고기/돼지/닭/해산물 등 다양한 토핑 선택 가능.
+          </div>
+          <div class="food-card-meta">
+            <span class="food-meta-tag">&#x1F4B0; 100~200THB</span>
+            <span class="food-meta-tag">&#x1F4CD; Nimman Soi 7</span>
+            <span class="food-meta-tag">&#x23F0; 10:00~21:00</span>
+          </div>
+          <div class="food-card-recommend">&#x1F525; 필수! 소프트쉘 크랩 카오소이 + 남뿌릭눔</div>
+          <a class="food-card-map" href="https://maps.app.goo.gl/KaoSoyNimman?q=18.7979,98.9693" target="_blank" rel="noopener">&#x1F4CD; Google Maps 열기</a>
         </div>
-        <div class="food-card-meta">
-          <span class="food-meta-tag">&#x1F4B0; 100~200THB</span>
-          <span class="food-meta-tag">&#x1F4CD; Nimman Soi 7</span>
-          <span class="food-meta-tag">&#x23F0; 10:00~21:00</span>
-        </div>
-        <div class="food-card-recommend">&#x1F525; 필수! 소프트쉘 크랩 카오소이 + 남뿌릭눔</div>
       </div>
 
       <div class="food-card">
-        <span class="food-card-badge bib-gourmand">&#x1F534; Bib Gourmand</span>
-        <div class="food-card-name">Ginger Farm Kitchen (&#xC9C4;&#xC800;&#xD31C; &#xD0A4;&#xCE5C;)</div>
-        <div class="food-card-cuisine">&#x1F33F; 팜투테이블 &middot; 북부 태국 요리</div>
-        <div class="food-card-desc">
-          자체 농장에서 유기농 식재료를 직접 조달하는 팜투시티 콘셉트. MSG 무첨가.
-          매홍손 스타일 항레이 커리, 바삭한 방목 돼지 삼겹살과 수제 피클이 시그니처.
-          2020년부터 연속 빕 구르망 선정.
+        <img class="food-card-img" src="images/food/ginger-farm.jpg" alt="Ginger Farm Kitchen 항레이 커리" loading="lazy">
+        <div class="food-card-body">
+          <span class="food-card-badge bib-gourmand">&#x1F534; Bib Gourmand</span>
+          <div class="food-card-name">Ginger Farm Kitchen (진저팜 키친)</div>
+          <div class="food-card-cuisine">&#x1F33F; 팜투테이블 &middot; 북부 태국 요리</div>
+          <div class="food-card-desc">
+            자체 농장에서 유기농 식재료를 직접 조달하는 팜투시티 콘셉트. MSG 무첨가.
+            매홍손 스타일 항레이 커리, 바삭한 방목 돼지 삼겹살과 수제 피클이 시그니처.
+            2020년부터 연속 빕 구르망 선정.
+          </div>
+          <div class="food-card-meta">
+            <span class="food-meta-tag">&#x1F4B0; 200~400THB</span>
+            <span class="food-meta-tag">&#x1F4CD; One Nimman 1F</span>
+            <span class="food-meta-tag">&#x23F0; 11:00~21:00</span>
+          </div>
+          <div class="food-card-recommend">&#x1F525; 항레이 커리 + 프리레인지 포크벨리 추천</div>
+          <a class="food-card-map" href="https://www.google.com/maps?cid=2051551831623895628" target="_blank" rel="noopener">&#x1F4CD; Google Maps 열기</a>
         </div>
-        <div class="food-card-meta">
-          <span class="food-meta-tag">&#x1F4B0; 200~400THB</span>
-          <span class="food-meta-tag">&#x1F4CD; One Nimman 1F</span>
-          <span class="food-meta-tag">&#x23F0; 11:00~21:00</span>
-        </div>
-        <div class="food-card-recommend">&#x1F525; 항레이 커리 + 프리레인지 포크벨리 추천</div>
       </div>
 
       <div class="food-card">
-        <span class="food-card-badge bib-gourmand">&#x1F534; Bib Gourmand</span>
-        <div class="food-card-name">Kuakai Nimman (&#xCFE0;&#xC544;&#xCE74;&#xC774; &#xB2D8;&#xB9CC;)</div>
-        <div class="food-card-cuisine">&#x1F357; 태국 누들 &middot; 꾸어까이 전문</div>
-        <div class="food-card-desc">
-          넓적한 쌀면과 닭고기를 철판에 볶아내는 꾸어까이(&#xE01;&#xEB;&#xECD;&#xE22;&#xE44;&#xE01;&#xE48;) 전문점.
-          뜨거운 스킬렛 그대로 서빙해 끝까지 따끈한 맛.
-          합리적 가격에 든든한 한 끼로 현지인에게 압도적 인기.
+        <img class="food-card-img" src="images/food/kuakai-nimman.jpg" alt="Kuakai Nimman 꾸어까이" loading="lazy">
+        <div class="food-card-body">
+          <span class="food-card-badge bib-gourmand">&#x1F534; Bib Gourmand</span>
+          <div class="food-card-name">Kuakai Nimman (쿠아까이 님만)</div>
+          <div class="food-card-cuisine">&#x1F357; 태국 누들 &middot; 꾸어까이 전문</div>
+          <div class="food-card-desc">
+            넓적한 쌀면과 닭고기를 철판에 볶아내는 꾸어까이 전문점.
+            뜨거운 스킬렛 그대로 서빙해 끝까지 따끈한 맛.
+            합리적 가격에 든든한 한 끼로 현지인에게 압도적 인기.
+          </div>
+          <div class="food-card-meta">
+            <span class="food-meta-tag">&#x1F4B0; 80~150THB</span>
+            <span class="food-meta-tag">&#x1F4CD; Sai Nam Phueng, Su Thep</span>
+            <span class="food-meta-tag">&#x23F0; 09:00~21:00</span>
+          </div>
+          <div class="food-card-recommend">&#x1F525; 꾸어까이 오리지널 + 똠얌 누들</div>
+          <a class="food-card-map" href="https://www.google.com/maps/place/?q=place_id:ChIJwXvm" target="_blank" rel="noopener">&#x1F4CD; Google Maps 열기</a>
         </div>
-        <div class="food-card-meta">
-          <span class="food-meta-tag">&#x1F4B0; 80~150THB</span>
-          <span class="food-meta-tag">&#x1F4CD; Sai Nam Phueng, Su Thep</span>
-          <span class="food-meta-tag">&#x23F0; 10:30~20:30</span>
-        </div>
-        <div class="food-card-recommend">&#x1F525; 꾸어까이 오리지널 + 똠얌 누들</div>
       </div>
 
       <div class="food-card">
-        <span class="food-card-badge selected">&#x2B50; Michelin Selected</span>
-        <div class="food-card-name">Oxygen Dining Room (&#xC625;&#xC2DC;&#xC820; &#xB2E4;&#xC774;&#xB2DD; &#xB8F8;)</div>
-        <div class="food-card-cuisine">&#x1F372; 프렌치-태국 퓨전 &middot; 파인다이닝</div>
-        <div class="food-card-desc">
-          프랑스 출신 셰프 Alexandre Demard가 이끄는 파인다이닝.
-          태국 식재료에 프렌치 테크닉을 접목한 창의적인 코스 요리.
-          님만 인근에서 특별한 저녁을 원한다면 여기.
+        <img class="food-card-img" src="images/food/oxygen-dining.jpg" alt="Oxygen Dining Room 파인다이닝" loading="lazy">
+        <div class="food-card-body">
+          <span class="food-card-badge selected">&#x2B50; Michelin Selected</span>
+          <div class="food-card-name">Oxygen Dining Room (옥시젠 다이닝 룸)</div>
+          <div class="food-card-cuisine">&#x1F372; 프렌치-태국 퓨전 &middot; 파인다이닝</div>
+          <div class="food-card-desc">
+            프랑스 출신 셰프 Alexandre Demard가 이끄는 파인다이닝.
+            태국 식재료에 프렌치 테크닉을 접목한 창의적인 코스 요리.
+            핑강변 X2 리조트 내에 위치, 특별한 저녁을 원한다면 여기.
+          </div>
+          <div class="food-card-meta">
+            <span class="food-meta-tag">&#x1F4B0; 1,200~2,500THB</span>
+            <span class="food-meta-tag">&#x1F4CD; 369/1 Charoenraj Rd</span>
+            <span class="food-meta-tag">&#x23F0; 11:30~22:00</span>
+          </div>
+          <div class="food-card-recommend">&#x2728; 특별한 날 디너 코스 추천 (예약 필수)</div>
+          <a class="food-card-map" href="https://www.google.com/maps/search/Oxygen+Dining+Room+Chiang+Mai" target="_blank" rel="noopener">&#x1F4CD; Google Maps 열기</a>
         </div>
-        <div class="food-card-meta">
-          <span class="food-meta-tag">&#x1F4B0; 1,200~2,500THB</span>
-          <span class="food-meta-tag">&#x1F4CD; Nimman 인근</span>
-          <span class="food-meta-tag">&#x23F0; 18:00~22:00</span>
-        </div>
-        <div class="food-card-recommend">&#x2728; 특별한 날 디너 코스 추천 (예약 필수)</div>
       </div>
 
       <div class="food-card">
-        <span class="food-card-badge bib-gourmand">&#x1F534; Bib Gourmand</span>
-        <div class="food-card-name">Huen Muan Jai (&#xD5A8; &#xBB34;&#xC548; &#xC790;&#xC774;)</div>
-        <div class="food-card-cuisine">&#x1F962; 란나 전통 요리 &middot; 북부 태국</div>
-        <div class="food-card-desc">
-          치앙마이 란나 전통 요리의 정수. 복잡하면서도 균형 잡힌 양념이 특징.
-          깽행레이, 남쁘릭옹, 사이우아(치앙마이 소시지) 등
-          정통 북부 메뉴를 합리적 가격에 맛볼 수 있는 곳. 2인 풀코스 약 500THB.
+        <img class="food-card-img" src="images/food/huen-muan-jai.jpg" alt="Huen Muan Jai 란나 요리" loading="lazy">
+        <div class="food-card-body">
+          <span class="food-card-badge bib-gourmand">&#x1F534; Bib Gourmand</span>
+          <div class="food-card-name">Huen Muan Jai (흰 무안 자이)</div>
+          <div class="food-card-cuisine">&#x1F962; 란나 전통 요리 &middot; 북부 태국</div>
+          <div class="food-card-desc">
+            치앙마이 란나 전통 요리의 정수. 복잡하면서도 균형 잡힌 양념이 특징.
+            깽행레이, 남쁘릭옹, 사이우아(치앙마이 소시지) 등
+            정통 북부 메뉴를 합리적 가격에 맛볼 수 있는 곳. 2인 풀코스 약 500THB.
+          </div>
+          <div class="food-card-meta">
+            <span class="food-meta-tag">&#x1F4B0; 150~300THB</span>
+            <span class="food-meta-tag">&#x1F4CD; 24 Ratchaphuek Alley</span>
+            <span class="food-meta-tag">&#x23F0; 10:00~22:00</span>
+          </div>
+          <div class="food-card-recommend">&#x1F525; 깽행레이 + 사이우아 + 남쁘릭눔 세트</div>
+          <a class="food-card-map" href="https://www.google.com/maps?cid=7758940791308277553" target="_blank" rel="noopener">&#x1F4CD; Google Maps 열기</a>
         </div>
-        <div class="food-card-meta">
-          <span class="food-meta-tag">&#x1F4B0; 150~300THB</span>
-          <span class="food-meta-tag">&#x1F4CD; Chang Phueak (님만 10분)</span>
-          <span class="food-meta-tag">&#x23F0; 10:00~22:00</span>
-        </div>
-        <div class="food-card-recommend">&#x1F525; 깽행레이 + 사이우아 + 남쁘릭눔 세트</div>
       </div>
 
       <div class="food-card">
-        <span class="food-card-badge bib-gourmand">&#x1F534; Bib Gourmand 2026 NEW</span>
-        <div class="food-card-name">CHAWEE (&#xCC28;&#xC704;)</div>
-        <div class="food-card-cuisine">&#x1F33E; 시즌 메뉴 &middot; 가정식 태국 요리</div>
-        <div class="food-card-desc">
-          2026년 신규 빕 구르망 선정! 가족 레시피에서 영감을 받은 시즌 메뉴가 특징.
-          계절마다 바뀌는 메뉴로 방문할 때마다 새로운 맛을 경험.
-          로컬 식재료를 활용한 정성 가득한 홈스타일 요리.
+        <img class="food-card-img" src="images/food/chawee.jpg" alt="CHAWEE 인테리어" loading="lazy">
+        <div class="food-card-body">
+          <span class="food-card-badge bib-gourmand">&#x1F534; Bib Gourmand 2026 NEW</span>
+          <div class="food-card-name">CHAWEE (차위)</div>
+          <div class="food-card-cuisine">&#x1F33E; 시즌 메뉴 &middot; 가정식 태국 요리</div>
+          <div class="food-card-desc">
+            2026년 신규 빕 구르망 선정! 할머니 이름을 딴 아늑한 공간에서
+            계절마다 바뀌는 메뉴로 방문할 때마다 새로운 맛을 경험.
+            예약제 운영, 로컬 식재료를 활용한 홈스타일 요리.
+          </div>
+          <div class="food-card-meta">
+            <span class="food-meta-tag">&#x1F4B0; 200~400THB</span>
+            <span class="food-meta-tag">&#x1F4CD; 84/20 Chang Phueak</span>
+            <span class="food-meta-tag">&#x1F4DE; +66 84 324 9363</span>
+          </div>
+          <div class="food-card-recommend">&#x2728; 예약 필수! 시즌 세트 메뉴 (카이팔로, 무사떼 추천)</div>
+          <a class="food-card-map" href="https://www.google.com/maps/search/CHAWEE+Chiang+Mai+Chang+Phueak" target="_blank" rel="noopener">&#x1F4CD; Google Maps 열기</a>
         </div>
-        <div class="food-card-meta">
-          <span class="food-meta-tag">&#x1F4B0; 200~400THB</span>
-          <span class="food-meta-tag">&#x1F4CD; Chiang Mai</span>
-          <span class="food-meta-tag">&#x1F195; 2026 신규 선정</span>
-        </div>
-        <div class="food-card-recommend">&#x2728; 2026 신규 선정! 시즌 메뉴 꼭 체크</div>
       </div>
 
     </div>
