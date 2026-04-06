@@ -2250,7 +2250,7 @@ section:nth-child(even) {
       <a href="#budget" class="nav-link">예산</a>
       <a href="#accommodation" class="nav-link">숙소</a>
       <a href="#checklist" class="nav-link">준비물</a>
-      <a href="#food" class="nav-link">맛집</a>
+      <a href="#food" class="nav-link">님만맛집</a>
       <a href="#tips" class="nav-link">꿀팁</a>
     </div>
     <button class="nav-hamburger" id="hamburger" aria-label="메뉴">
@@ -2886,6 +2886,7 @@ section:nth-child(even) {
       <div class="map-legend-item"><div class="map-legend-dot" style="background:var(--orange)"></div>액티비티</div>
       <div class="map-legend-item"><div class="map-legend-dot" style="background:var(--gold-dark)"></div>문화</div>
       <div class="map-legend-item"><div class="map-legend-dot" style="background:var(--teal)"></div>미식</div>
+      <div class="map-legend-item"><div class="map-legend-dot" style="background:#D43535"></div>맛집</div>
     </div>
 
     <div class="map-container reveal">
@@ -2965,10 +2966,29 @@ section:nth-child(even) {
             <text x="405" y="198" text-anchor="middle" font-size="8" font-weight="700" fill="var(--text)">창푸악게이트</text>
           </g>
 
-          <g class="map-spot" data-name="올드타운 맛집투어" data-cat="미식" data-time="3~4시간" data-cost="300~500THB" data-days="4">
-            <circle cx="380" cy="390" r="12" fill="var(--teal)" opacity="0.85"/>
-            <text x="380" y="394" text-anchor="middle" font-size="11" fill="#fff">&#x1F35C;</text>
-            <text x="380" y="410" text-anchor="middle" font-size="8" font-weight="700" fill="var(--text)">맛집투어</text>
+          <!-- 올드타운 맛집 마커 -->
+          <g class="map-spot" data-name="Blue Noodle (블루누들)" data-cat="미식" data-time="30분~1시간" data-cost="80~100THB" data-days="1,2,3,4">
+            <circle cx="395" cy="320" r="10" fill="#D43535" opacity="0.9"/>
+            <text x="395" y="324" text-anchor="middle" font-size="9" fill="#fff">&#x1F35C;</text>
+            <text x="395" y="337" text-anchor="middle" font-size="7" font-weight="700" fill="var(--text)">블루누들</text>
+          </g>
+
+          <g class="map-spot" data-name="SP Chicken (미슐랭 빕 구르망)" data-cat="미식" data-time="30분~1시간" data-cost="90~200THB" data-days="1,2,3,4">
+            <circle cx="350" cy="360" r="10" fill="#D43535" opacity="0.9"/>
+            <text x="350" y="364" text-anchor="middle" font-size="9" fill="#fff">&#x1F357;</text>
+            <text x="350" y="377" text-anchor="middle" font-size="7" font-weight="700" fill="var(--text)">SP치킨</text>
+          </g>
+
+          <g class="map-spot" data-name="Huen Phen (흐언펜 - 40년 전통)" data-cat="미식" data-time="1시간" data-cost="60~200THB" data-days="1,2,3,4">
+            <circle cx="420" cy="340" r="10" fill="#D43535" opacity="0.9"/>
+            <text x="420" y="344" text-anchor="middle" font-size="9" fill="#fff">&#x1F962;</text>
+            <text x="420" y="357" text-anchor="middle" font-size="7" font-weight="700" fill="var(--text)">흐언펜</text>
+          </g>
+
+          <g class="map-spot" data-name="Lert Ros (럿로스 - 숯불 생선구이)" data-cat="미식" data-time="1시간" data-cost="150~300THB" data-days="1,2,3,4">
+            <circle cx="470" cy="310" r="10" fill="#D43535" opacity="0.9"/>
+            <text x="470" y="314" text-anchor="middle" font-size="9" fill="#fff">&#x1F41F;</text>
+            <text x="470" y="327" text-anchor="middle" font-size="7" font-weight="700" fill="var(--text)">럿로스</text>
           </g>
 
           <g class="map-spot" data-name="워킹스트리트" data-cat="미식" data-time="2~3시간" data-cost="자유" data-days="4">
@@ -3440,6 +3460,107 @@ section:nth-child(even) {
 
     <div class="food-source reveal">
       &#x1F4D6; 출처: MICHELIN Guide Thailand 2024~2026 &mdash;
+      가격/영업시간은 변동될 수 있으니 방문 전 확인하세요
+    </div>
+  </div>
+</section>
+
+<!-- 올드타운 맛집 -->
+<section id="food-oldtown">
+  <div class="container">
+    <h2 class="section-title reveal">&#x1F3EF; 올드타운 맛집</h2>
+    <p class="section-subtitle reveal">한국인 블로거 &amp; 현지인 추천 | 구시가지 도보권 로컬 맛집</p>
+
+    <div class="food-grid reveal">
+
+      <div class="food-card">
+        <img class="food-card-img" src="images/food/blue-noodle.jpg" alt="Blue Noodle 소고기 국수" loading="lazy">
+        <div class="food-card-body">
+          <span class="food-card-badge selected">&#x2B50; 한국인 필수 코스</span>
+          <div class="food-card-name">Blue Noodle (블루누들)</div>
+          <div class="food-card-cuisine">&#x1F35C; 소고기 쌀국수 &middot; 간장 베이스</div>
+          <div class="food-card-desc">
+            치앙마이 3대 국수로 불리는 한국인 인기 맛집. 진한 간장 베이스 육수에
+            입에서 살살 녹는 소고기가 듬뿍. 8번(소고기 올인) 메뉴가 인기.
+            면 굵기 선택 가능 (센미/센야이). 밀크티 20THB도 필수.
+          </div>
+          <div class="food-card-meta">
+            <span class="food-meta-tag">&#x1F4B0; M 80 / L 100THB</span>
+            <span class="food-meta-tag">&#x1F4CD; 71 Rachadamnoen Rd</span>
+            <span class="food-meta-tag">&#x23F0; 09:00~18:00</span>
+          </div>
+          <div class="food-card-recommend">&#x1F525; 8번 소고기 올인 + 밀크티 조합 필수</div>
+          <a class="food-card-map" href="https://www.google.com/maps/search/Blue+Noodle+Chiang+Mai+Rachadamnoen" target="_blank" rel="noopener">&#x1F4CD; Google Maps 열기</a>
+        </div>
+      </div>
+
+      <div class="food-card">
+        <img class="food-card-img" src="images/food/sp-chicken.jpg" alt="SP Chicken 까이양" loading="lazy">
+        <div class="food-card-body">
+          <span class="food-card-badge bib-gourmand">&#x1F534; Bib Gourmand</span>
+          <div class="food-card-name">SP Chicken (에스피 치킨)</div>
+          <div class="food-card-cuisine">&#x1F357; 숯불 구운 통닭 &middot; 솜땀</div>
+          <div class="food-card-desc">
+            미슐랭 빕 구르망 선정 통닭 전문점. 숯불에 천천히 구워 겉바속촉.
+            까이양(구운 닭) + 솜땀(파파야 샐러드) + 찰밥 조합이 정석.
+            왓 프라싱 근처 아카아마 카페 옆.
+          </div>
+          <div class="food-card-meta">
+            <span class="food-meta-tag">&#x1F4B0; 반 마리 90THB</span>
+            <span class="food-meta-tag">&#x1F4CD; 9/1 Sam Larn Soi 1</span>
+            <span class="food-meta-tag">&#x23F0; 11:00~21:00</span>
+          </div>
+          <div class="food-card-recommend">&#x1F525; 까이양 반마리 + 솜땀 + 찰밥 + 싱하 맥주</div>
+          <a class="food-card-map" href="https://www.google.com/maps/search/SP+Chicken+Chiang+Mai+Sam+Larn" target="_blank" rel="noopener">&#x1F4CD; Google Maps 열기</a>
+        </div>
+      </div>
+
+      <div class="food-card">
+        <img class="food-card-img" src="images/food/huen-phen.jpg" alt="Huen Phen 흐언펜 북부 요리" loading="lazy">
+        <div class="food-card-body">
+          <span class="food-card-badge selected">&#x2B50; 40년 전통 북부 요리</span>
+          <div class="food-card-name">Huen Phen (흐언펜)</div>
+          <div class="food-card-cuisine">&#x1F962; 북부 태국 전통 요리 &middot; 카오소이</div>
+          <div class="food-card-desc">
+            40년 넘게 운영된 올드타운 대표 북부 요리 전문점.
+            낮에는 캐주얼 식당, 저녁에는 란나 전통 인테리어의 분위기 있는 공간.
+            카오소이, 깽행레이, 사이우아 등 정통 메뉴 풀코스 가능.
+          </div>
+          <div class="food-card-meta">
+            <span class="food-meta-tag">&#x1F4B0; 60~200THB</span>
+            <span class="food-meta-tag">&#x1F4CD; 112 Ratchamanka Rd</span>
+            <span class="food-meta-tag">&#x23F0; 08:30~22:00</span>
+          </div>
+          <div class="food-card-recommend">&#x1F525; 카오소이 닭고기 60THB + 깽행레이 세트</div>
+          <a class="food-card-map" href="https://www.google.com/maps/search/Huen+Phen+Chiang+Mai+Ratchamanka" target="_blank" rel="noopener">&#x1F4CD; Google Maps 열기</a>
+        </div>
+      </div>
+
+      <div class="food-card">
+        <img class="food-card-img" src="images/food/lert-ros.jpg" alt="Lert Ros 생선구이" loading="lazy">
+        <div class="food-card-body">
+          <span class="food-card-badge selected">&#x2B50; 타페게이트 숯불 맛집</span>
+          <div class="food-card-name">Lert Ros (럿로스)</div>
+          <div class="food-card-cuisine">&#x1F41F; 숯불 생선구이 &middot; 쏨땀</div>
+          <div class="food-card-desc">
+            타페게이트 근처 골목의 숯불 그릴 전문점. 틸라피아 통 생선구이가 시그니처.
+            옥수수 쏨땀의 달큰짭조름한 맛과 숯불 생선의 조화가 일품.
+            찰밥(카오냐오)에 쏨땀 국물 적셔 먹기 추천.
+          </div>
+          <div class="food-card-meta">
+            <span class="food-meta-tag">&#x1F4B0; 생선구이 150THB</span>
+            <span class="food-meta-tag">&#x1F4CD; 18/4 Rachadamnoen Rd</span>
+            <span class="food-meta-tag">&#x23F0; 12:00~21:00</span>
+          </div>
+          <div class="food-card-recommend">&#x1F525; 생선구이 + 옥수수 쏨땀 50THB + 찰밥</div>
+          <a class="food-card-map" href="https://www.google.com/maps/search/Lert+Ros+Chiang+Mai+Rachadamnoen" target="_blank" rel="noopener">&#x1F4CD; Google Maps 열기</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="food-source reveal">
+      &#x1F4D6; 출처: 한국어 여행 블로그 (KKday, 트립스토어, 브런치) &amp; 현지인 추천 &mdash;
       가격/영업시간은 변동될 수 있으니 방문 전 확인하세요
     </div>
   </div>
