@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>치앙마이 4박 5일 - 12명의 자유 조인 어드벤처</title>
+<title>치앙마이 4박 5일 - 16조의 따로 또 같이 어드벤처</title>
 <style>
 /* ===== CSS Variables ===== */
 :root {
@@ -997,6 +997,113 @@ section:nth-child(even) {
   color: var(--text-light);
 }
 
+/* ===== Food (미슐랭 맛집) ===== */
+.food-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+.food-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 28px;
+  box-shadow: var(--card-shadow);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.food-card:hover {
+  box-shadow: var(--card-shadow-hover);
+  transform: translateY(-2px);
+}
+
+.food-card-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  margin-bottom: 12px;
+}
+
+.food-card-badge.bib-gourmand {
+  background: rgba(232, 53, 53, 0.08);
+  color: #D43535;
+  border: 1px solid rgba(232, 53, 53, 0.2);
+}
+
+.food-card-badge.selected {
+  background: rgba(46, 139, 139, 0.08);
+  color: var(--teal);
+  border: 1px solid rgba(46, 139, 139, 0.2);
+}
+
+.food-card-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.food-card-cuisine {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  margin-bottom: 14px;
+}
+
+.food-card-desc {
+  font-size: 0.92rem;
+  color: var(--text);
+  line-height: 1.65;
+  margin-bottom: 16px;
+}
+
+.food-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.food-meta-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  background: var(--cream);
+  border-radius: 6px;
+  font-size: 0.8rem;
+  color: var(--text-light);
+}
+
+.food-card-recommend {
+  font-size: 0.85rem;
+  color: var(--orange);
+  font-weight: 600;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.food-source {
+  text-align: center;
+  margin-top: 24px;
+  font-size: 0.82rem;
+  color: var(--text-light);
+}
+
+.food-source a {
+  color: var(--teal);
+  text-decoration: none;
+}
+
+.food-source a:hover {
+  text-decoration: underline;
+}
+
 /* ===== Footer ===== */
 .footer {
   text-align: center;
@@ -1048,6 +1155,7 @@ section:nth-child(even) {
   .accom-grid { grid-template-columns: 1fr; }
   .checklist-items { grid-template-columns: 1fr; }
   .tips-grid { grid-template-columns: 1fr; }
+  .food-grid { grid-template-columns: 1fr; }
 
   .day-tab {
     padding: 10px 16px;
@@ -1566,6 +1674,530 @@ section:nth-child(even) {
   .map-filter-btn { border: 1px solid #ddd; }
   .map-tooltip { display: none !important; }
 }
+
+/* ===== My Trip (내 일정 만들기) ===== */
+.mytrip-name-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 36px;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mytrip-name-row input {
+  flex: 1;
+  padding: 12px 16px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--card-bg);
+  color: var(--text);
+  font-size: 1rem;
+  font-family: inherit;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.mytrip-name-row input:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(212, 168, 67, 0.15);
+}
+
+.mytrip-day-group {
+  margin-bottom: 32px;
+}
+
+.mytrip-day-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 14px;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mytrip-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 12px;
+}
+
+.mytrip-opt {
+  background: var(--card-bg);
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 16px;
+  cursor: pointer;
+  transition: var(--transition);
+  position: relative;
+  user-select: none;
+}
+
+.mytrip-opt:hover {
+  border-color: var(--gold);
+  box-shadow: var(--card-shadow-hover);
+  transform: translateY(-2px);
+}
+
+.mytrip-opt.selected {
+  border-color: var(--gold-dark);
+  background: rgba(212, 168, 67, 0.08);
+  box-shadow: 0 0 0 3px rgba(212, 168, 67, 0.18);
+}
+
+.mytrip-opt.selected::after {
+  content: '\2713';
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  width: 24px;
+  height: 24px;
+  background: var(--gold-dark);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.mytrip-opt-icon {
+  font-size: 1.8rem;
+  margin-bottom: 6px;
+}
+
+.mytrip-opt-name {
+  font-size: 0.98rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.mytrip-opt-desc {
+  font-size: 0.82rem;
+  color: var(--text-light);
+}
+
+.mytrip-opt-label {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 12px;
+  background: var(--border);
+  color: var(--text-light);
+  margin-bottom: 8px;
+}
+
+.mytrip-actions {
+  text-align: center;
+  margin-top: 32px;
+}
+
+.mytrip-result {
+  display: none;
+  background: var(--card-bg);
+  border: 2px solid var(--green);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-top: 24px;
+  text-align: center;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: var(--card-shadow);
+}
+
+.mytrip-result.show {
+  display: block;
+}
+
+.mytrip-result-url {
+  word-break: break-all;
+  font-size: 0.82rem;
+  color: var(--text-light);
+  background: var(--cream);
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  margin: 12px 0;
+  max-height: 60px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mytrip-result-summary {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 16px 0;
+}
+
+.mytrip-result-tag {
+  background: rgba(212, 168, 67, 0.1);
+  color: var(--gold-dark);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+/* ===== Team Section (팀원 일정) ===== */
+.team-admin-toggle {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.team-admin-btn {
+  padding: 8px 20px;
+  border: 2px solid var(--border);
+  border-radius: 50px;
+  background: var(--card-bg);
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: var(--text-light);
+  transition: var(--transition);
+}
+
+.team-admin-btn:hover {
+  border-color: var(--orange);
+  color: var(--orange);
+}
+
+.team-admin-btn.active {
+  background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+  color: #fff;
+  border-color: transparent;
+}
+
+.team-admin-panel {
+  display: none;
+  background: var(--card-bg);
+  border: 2px solid var(--orange-light);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-bottom: 32px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: var(--card-shadow);
+}
+
+.team-admin-panel.show {
+  display: block;
+}
+
+.team-admin-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.team-admin-row input {
+  flex: 1;
+  padding: 10px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 0.9rem;
+  font-family: inherit;
+}
+
+.team-admin-row input:focus {
+  outline: none;
+  border-color: var(--orange);
+  box-shadow: 0 0 0 3px rgba(232, 123, 53, 0.15);
+}
+
+.team-admin-row button {
+  padding: 10px 20px;
+  background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: var(--transition);
+}
+
+.team-admin-row button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(232, 123, 53, 0.3);
+}
+
+.team-export-btn {
+  padding: 8px 18px;
+  background: rgba(46, 139, 139, 0.12);
+  color: var(--teal);
+  border: 1px solid var(--teal);
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.team-export-btn:hover {
+  background: rgba(46, 139, 139, 0.25);
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 14px;
+  margin-bottom: 36px;
+}
+
+.team-card {
+  background: var(--card-bg);
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.team-card:hover {
+  border-color: var(--gold);
+  box-shadow: var(--card-shadow-hover);
+  transform: translateY(-2px);
+}
+
+.team-card.active {
+  border-color: var(--gold-dark);
+  box-shadow: 0 0 0 3px rgba(212, 168, 67, 0.18);
+}
+
+.team-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, var(--gold-light), var(--orange-light));
+}
+
+.team-card-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.team-card-name {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.team-card-summary {
+  font-size: 0.8rem;
+  color: var(--text-light);
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.team-card-remove {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--warm-gray-light);
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: var(--transition);
+}
+
+.team-card-remove:hover {
+  background: rgba(232, 123, 53, 0.1);
+  color: var(--orange);
+}
+
+.team-admin-panel.show ~ .team-grid .team-card-remove {
+  display: block;
+}
+
+.team-detail {
+  display: none;
+  background: var(--card-bg);
+  border: 2px solid var(--gold-light);
+  border-radius: var(--radius);
+  padding: 28px;
+  margin-bottom: 32px;
+  box-shadow: var(--card-shadow);
+}
+
+.team-detail.show {
+  display: block;
+  animation: fadeInUp 0.3s ease;
+}
+
+.team-detail-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.team-detail-name {
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.team-detail-days {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.team-day-card {
+  background: var(--cream);
+  border-radius: var(--radius-sm);
+  padding: 14px;
+  text-align: center;
+}
+
+.team-day-label {
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--text-light);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.team-day-value {
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.team-headcount {
+  margin-top: 36px;
+}
+
+.team-headcount h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.team-hc-day {
+  margin-bottom: 24px;
+}
+
+.team-hc-day-title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.team-hc-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  background: var(--card-bg);
+  border-radius: var(--radius-sm);
+  margin-bottom: 6px;
+  border: 1px solid var(--border);
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+.team-hc-icon {
+  font-size: 1.2rem;
+}
+
+.team-hc-label {
+  font-weight: 700;
+  min-width: 120px;
+}
+
+.team-hc-names {
+  color: var(--text-light);
+  flex: 1;
+}
+
+.team-hc-count {
+  font-weight: 700;
+  color: var(--gold-dark);
+  font-size: 0.85rem;
+}
+
+.team-empty {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-light);
+  font-size: 1rem;
+}
+
+/* 지도 팀원 동선 라인 */
+.map-route-personal {
+  stroke-width: 2.5;
+  stroke-dasharray: 8, 4;
+  fill: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.map-route-personal.show {
+  opacity: 0.8;
+}
+
+.map-spot.team-highlight circle,
+.map-spot.team-highlight rect {
+  stroke: #fff;
+  stroke-width: 3;
+  filter: url(#mapShadow);
+}
+
+.map-spot.team-dimmed {
+  opacity: 0.15 !important;
+  transition: opacity 0.3s ease;
+}
+
+.map-spot.team-highlight {
+  opacity: 1 !important;
+  transition: opacity 0.3s ease;
+}
+
+/* ===== Mobile: 새 섹션 반응형 ===== */
+@media (max-width: 768px) {
+  .mytrip-options { grid-template-columns: 1fr 1fr; }
+  .team-grid { grid-template-columns: 1fr; }
+  .team-detail-days { grid-template-columns: 1fr 1fr; }
+  .team-admin-row { flex-direction: column; }
+  .team-admin-row button { width: 100%; }
+  .mytrip-name-row { flex-direction: column; }
+}
+
+@media (max-width: 480px) {
+  .mytrip-options { grid-template-columns: 1fr; }
+}
+
+/* ===== Print: 새 섹션 ===== */
+@media print {
+  .mytrip-actions, .team-admin-toggle, .team-admin-panel, .team-card-remove { display: none !important; }
+}
 </style>
 </head>
 <body>
@@ -1579,10 +2211,13 @@ section:nth-child(even) {
       <a href="#booking" class="nav-link">예약정보</a>
       <a href="#system" class="nav-link">자유조인</a>
       <a href="#schedule" class="nav-link">일정</a>
+      <a href="#mytrip" class="nav-link">내 일정</a>
       <a href="#map" class="nav-link">지도</a>
+      <a href="#team" class="nav-link">팀원</a>
       <a href="#budget" class="nav-link">예산</a>
       <a href="#accommodation" class="nav-link">숙소</a>
       <a href="#checklist" class="nav-link">준비물</a>
+      <a href="#food" class="nav-link">맛집</a>
       <a href="#tips" class="nav-link">꿀팁</a>
     </div>
     <button class="nav-hamburger" id="hamburger" aria-label="메뉴">
@@ -1596,22 +2231,22 @@ section:nth-child(even) {
   <div class="hero-content">
     <div class="hero-flag">&#x1F1F9;&#x1F1ED;</div>
     <h1>치앙마이 4박 5일</h1>
-    <p class="hero-sub">12명의 자유 조인 어드벤처</p>
+    <p class="hero-sub">16조의 따로 또 같이 어드벤처</p>
     <div class="hero-cards">
       <div class="hero-card">
         <div class="hero-card-icon">&#x1F4C5;</div>
-        <div class="hero-card-value">4박 5일</div>
+        <div class="hero-card-value">6/19(금)~6/23(화)</div>
         <div class="hero-card-label">여행 기간</div>
       </div>
       <div class="hero-card">
         <div class="hero-card-icon">&#x1F46B;</div>
-        <div class="hero-card-value">12명</div>
-        <div class="hero-card-label">총 인원</div>
+        <div class="hero-card-value">16조 ~12명</div>
+        <div class="hero-card-label">인원</div>
       </div>
       <div class="hero-card">
-        <div class="hero-card-icon">&#x1F4B0;</div>
-        <div class="hero-card-value">200만원</div>
-        <div class="hero-card-label">인당 예산</div>
+        <div class="hero-card-icon">&#x1F3A8;</div>
+        <div class="hero-card-value">따로 또 같이</div>
+        <div class="hero-card-label">테마</div>
       </div>
     </div>
     <div class="hero-scroll">
@@ -1624,7 +2259,7 @@ section:nth-child(even) {
 <section id="booking">
   <div class="container">
     <h2 class="section-title reveal">&#x2708;&#xFE0F; 예약 정보</h2>
-    <p class="section-subtitle reveal">항공편과 숙소 정보를 입력하면 한눈에 확인할 수 있어요</p>
+    <p class="section-subtitle reveal">6/19(금) 인천 17:00 → 치앙마이 20:00 | 6/23(화) 치앙마이 23:00 → 인천 다음날 06:00</p>
 
     <div id="bookingEmpty" class="booking-empty reveal">
       <div class="booking-empty-icon">&#x1F4CB;</div>
@@ -1755,11 +2390,11 @@ section:nth-child(even) {
 <section class="join-system" id="system">
   <div class="container">
     <h2 class="section-title reveal">&#x1F3AF; 자유 조인 시스템</h2>
-    <p class="section-subtitle reveal">매일 원하는 활동을 골라 참여하세요. 강제 없음, 자유 100%</p>
+    <p class="section-subtitle reveal">수영장 있는 숙소에서 따로 또 같이 쉬다가 놀다가 하기</p>
 
     <div class="principle-box reveal">
       <h3>&#x1F4CB; 운영 원칙</h3>
-      <p>매일 아침 카톡방에 메뉴판이 공유됩니다.<br>원하는 활동에 이모지로 조인하세요!</p>
+      <p>매일 아침 카톡방에 메뉴판이 공유됩니다.<br>원하는 활동에 이모지로 조인하세요!<br><strong>6월은 우기! 오후 2~5시 스콜 → 오전에 야외, 오후에 카페/실내 루틴</strong><br><strong>새터데이&선데이 마켓은 필참 (사진 찍어야 함)</strong></p>
       <div class="principle-steps">
         <div class="principle-step">
           <span class="step-num">1</span>
@@ -1771,11 +2406,15 @@ section:nth-child(even) {
         </div>
         <div class="principle-step">
           <span class="step-num">3</span>
-          <span>자유 활동 출발</span>
+          <span>오전 야외 활동!</span>
         </div>
         <div class="principle-step">
           <span class="step-num">4</span>
-          <span>저녁 전체 합류</span>
+          <span>오후 카페/실내</span>
+        </div>
+        <div class="principle-step">
+          <span class="step-num">5</span>
+          <span>저녁 마켓 합류</span>
         </div>
       </div>
     </div>
@@ -1784,17 +2423,17 @@ section:nth-child(even) {
       <div class="track-card">
         <div class="track-icon">&#x1F9D8;</div>
         <div class="track-name">힐링</div>
-        <div class="track-desc">마사지, 요가, 명상<br>느긋하게 충전하는 시간</div>
+        <div class="track-desc">수영장, 마사지, 카페<br>리조트에서 죽은 듯이 쉬기</div>
       </div>
       <div class="track-card">
         <div class="track-icon">&#x1F3C4;</div>
         <div class="track-name">액티비티</div>
-        <div class="track-desc">짚라인, ATV, 래프팅<br>아드레날린 가득한 모험</div>
+        <div class="track-desc">짚라인, 코끼리 보호소<br>아드레날린 가득한 모험</div>
       </div>
       <div class="track-card">
         <div class="track-icon">&#x1F3DB;&#xFE0F;</div>
         <div class="track-name">문화</div>
-        <div class="track-desc">사원 투어, 올드타운 탐방<br>란나 왕국의 이야기</div>
+        <div class="track-desc">사원 투어, 치앙라이 투어<br>란나 왕국의 이야기</div>
       </div>
       <div class="track-card">
         <div class="track-icon">&#x1F37D;&#xFE0F;</div>
@@ -1822,289 +2461,375 @@ section:nth-child(even) {
     <!-- Day 1 -->
     <div class="day-panel active" id="day1">
       <div class="day-header">
-        <h3>Day 1</h3>
-        <div class="day-theme">"치앙마이 첫인상"</div>
+        <h3>Day 1 (6/19 금)</h3>
+        <div class="day-theme">"치앙마이 도착"</div>
       </div>
 
       <div class="day-notice">
-        &#x2708;&#xFE0F; 도착 ~ 15:00 | 공항 단체 픽업 &rarr; 숙소 체크인
+        &#x2708;&#xFE0F; 17:00 인천 출발 &rarr; 20:00 치앙마이 도착 (현지시간, 시차 -2h) | 첫날은 단체 고정
       </div>
 
-      <div class="options-label">&#x1F3AF; 오후 옵션 (15:00~)</div>
       <div class="option-grid">
         <div class="option-card track-culture">
-          <span class="option-label">A</span>
-          <div class="option-name">&#x1F6B6; 올드타운 산책</div>
+          <span class="option-label">단체</span>
+          <div class="option-name">&#x1F6EB; 인천 출발 → 치앙마이 도착</div>
           <div class="option-details">
-            <div class="option-detail"><span class="detail-icon">&#x1F552;</span> 17:00 ~ 18:30</div>
-            <div class="option-detail"><span class="detail-icon">&#x1F4B8;</span> 40THB (~1,840원)</div>
-            <div class="option-detail"><span class="detail-icon">&#x1F4CD;</span> 숙소 로비 집합</div>
-            <div class="option-detail"><span class="detail-icon">&#x1F465;</span> 2명 이상</div>
-          </div>
-        </div>
-        <div class="option-card track-healing">
-          <span class="option-label">B</span>
-          <div class="option-name">&#x1F486; 힐링 마사지</div>
-          <div class="option-details">
-            <div class="option-detail"><span class="detail-icon">&#x1F552;</span> 16:00 ~ 18:00</div>
-            <div class="option-detail"><span class="detail-icon">&#x1F4B8;</span> 300~500THB (~1.4~2.3만원)</div>
-            <div class="option-detail"><span class="detail-icon">&#x1F4CD;</span> 숙소 로비 집합</div>
-            <div class="option-detail"><span class="detail-icon">&#x1F465;</span> 1명 이상</div>
-          </div>
-        </div>
-        <div class="option-card track-food">
-          <span class="option-label">C</span>
-          <div class="option-name">&#x1F6D2; 와로롯 마켓 탐방</div>
-          <div class="option-details">
-            <div class="option-detail"><span class="detail-icon">&#x1F552;</span> 16:00 ~ 17:30</div>
-            <div class="option-detail"><span class="detail-icon">&#x1F4B8;</span> 자유</div>
-            <div class="option-detail"><span class="detail-icon">&#x1F4CD;</span> 숙소 로비 집합</div>
-            <div class="option-detail"><span class="detail-icon">&#x1F465;</span> 2명 이상</div>
+            <div class="option-detail"><span class="detail-icon">&#x1F552;</span> 17:00 출발 → 20:00 도착 (3시간)</div>
+            <div class="option-detail"><span class="detail-icon">&#x1F3E8;</span> 공항 → 숙소 이동 (단체)</div>
+            <div class="option-detail"><span class="detail-icon">&#x1F4CD;</span> 22:00경 체크인</div>
           </div>
         </div>
       </div>
 
       <div class="evening-card">
-        <h4>&#x1F307; 저녁 전체 합류</h4>
-        <p>나이트 바자 (18:30 집합) | 200~400THB</p>
+        <h4>&#x1F319; 도착 후</h4>
+        <p>가볍게 편의점 or 야식 | 첫날은 단체 고정</p>
       </div>
     </div>
 
     <!-- Day 2 -->
     <div class="day-panel" id="day2">
       <div class="day-header">
-        <h3>Day 2</h3>
-        <div class="day-theme">"풀파워 치앙마이"</div>
+        <h3>Day 2 (6/20 토)</h3>
+        <div class="day-theme">"첫 탐험 + 새터데이 마켓"</div>
       </div>
 
-      <div class="options-label">&#x1F3AF; 오전/종일 옵션</div>
+      <div class="options-label">&#x1F3AF; 오전 옵션 (야외 액티비티 선택)</div>
       <div class="option-grid">
-        <div class="option-card track-activity">
+        <div class="option-card track-culture">
           <span class="option-label">A</span>
-          <div class="option-name">&#x1F418; 코끼리 보호소 (종일)</div>
+          <div class="option-name">&#x1F6B6; 구시가 사원 도보 탐방</div>
           <div class="option-details">
-            <div class="option-detail"><span class="detail-icon">&#x1F552;</span> 08:00 ~ 16:00</div>
-            <div class="option-detail"><span class="detail-icon">&#x1F4B8;</span> 2,500THB (~11.5만원)</div>
-            <div class="option-detail"><span class="detail-icon">&#x1F4CD;</span> 숙소 픽업</div>
-            <div class="option-detail"><span class="detail-icon">&#x1F465;</span> 4명 이상</div>
+            <div class="option-detail"><span class="detail-icon">&#x1F552;</span> 오전 반나절</div>
+            <div class="option-detail"><span class="detail-icon">&#x1F4CD;</span> 왓 치앙만 → 왓 체디루앙 → 왓 판타오 → 왓 프라싱</div>
+            <div class="option-detail"><span class="detail-icon">&#x1F465;</span> 2명 이상</div>
           </div>
-          <span class="option-tag">&#x26A0;&#xFE0F; 전날 예약 필수 | 점심 포함</span>
         </div>
         <div class="option-card track-activity">
           <span class="option-label">B</span>
-          <div class="option-name">&#x1F332; 짚라인 어드벤처</div>
+          <div class="option-name">&#x1F332; 스카이라인 짚라인 어드벤처</div>
           <div class="option-details">
-            <div class="option-detail"><span class="detail-icon">&#x1F552;</span> 08:30 ~ 13:00</div>
-            <div class="option-detail"><span class="detail-icon">&#x1F4B8;</span> 2,000THB (~9.2만원)</div>
+            <div class="option-detail"><span class="detail-icon">&#x1F552;</span> 오전 반나절</div>
             <div class="option-detail"><span class="detail-icon">&#x1F4CD;</span> 숙소 픽업</div>
             <div class="option-detail"><span class="detail-icon">&#x1F465;</span> 2명 이상</div>
           </div>
-        </div>
-        <div class="option-card track-culture">
-          <span class="option-label">C</span>
-          <div class="option-name">&#x26E9;&#xFE0F; 도이수텝 + 몬쨈</div>
-          <div class="option-details">
-            <div class="option-detail"><span class="detail-icon">&#x1F552;</span> 09:00 ~ 14:00</div>
-            <div class="option-detail"><span class="detail-icon">&#x1F4B8;</span> 100THB (~4,600원) + 교통</div>
-            <div class="option-detail"><span class="detail-icon">&#x1F4CD;</span> 숙소 로비 집합</div>
-            <div class="option-detail"><span class="detail-icon">&#x1F465;</span> 3명 이상</div>
-          </div>
+          <span class="option-tag">&#x26A0;&#xFE0F; 3일 전 예약 필수</span>
         </div>
         <div class="option-card track-food">
-          <span class="option-label">D</span>
+          <span class="option-label">C</span>
           <div class="option-name">&#x1F373; 쿠킹클래스</div>
           <div class="option-details">
-            <div class="option-detail"><span class="detail-icon">&#x1F552;</span> 09:00 ~ 13:00</div>
-            <div class="option-detail"><span class="detail-icon">&#x1F4B8;</span> 1,000THB (~4.6만원)</div>
+            <div class="option-detail"><span class="detail-icon">&#x1F552;</span> 오전 반나절</div>
             <div class="option-detail"><span class="detail-icon">&#x1F4CD;</span> 숙소 픽업</div>
             <div class="option-detail"><span class="detail-icon">&#x1F465;</span> 2명 이상</div>
           </div>
-          <span class="option-tag">점심 대체</span>
+        </div>
+        <div class="option-card track-healing">
+          <span class="option-label">D</span>
+          <div class="option-name">&#x1F9D8; 리조트에서 죽은 듯이 쉬기</div>
+          <div class="option-details">
+            <div class="option-detail"><span class="detail-icon">&#x1F552;</span> 종일 자유</div>
+            <div class="option-detail"><span class="detail-icon">&#x1F3CA;</span> 수영장 + 마사지 + 카페</div>
+            <div class="option-detail"><span class="detail-icon">&#x1F465;</span> 1명 이상</div>
+          </div>
         </div>
       </div>
 
       <div class="afternoon-info">
-        <strong>&#x2615; 오후 자유시간:</strong> 님만해민 카페호핑 / 마사지 / 휴식
+        <strong>&#x2615; 오후 스콜 타임:</strong> 카페 / 마사지 / 실내 (자유)
       </div>
 
       <div class="evening-card">
-        <h4>&#x1F307; 저녁 전체 합류</h4>
-        <p>후엔뻰 단체 디너 (18:30 집합) | 200~400THB</p>
+        <h4>&#x1F31F; 저녁 18:00 새터데이 마켓 필참!</h4>
+        <p>Wualai Walking Street | 사진 찍어야 함!<br>밤: 나이트바자 + 트젠쇼(비공식) + 마사지(비공식)</p>
       </div>
     </div>
 
     <!-- Day 3 -->
     <div class="day-panel" id="day3">
       <div class="day-header">
-        <h3>Day 3</h3>
-        <div class="day-theme">"문화 & 자연 깊이 보기"</div>
+        <h3>Day 3 (6/21 일)</h3>
+        <div class="day-theme">"치앙라이 or 자유"</div>
       </div>
 
-      <div class="options-label">&#x1F3AF; 오전/종일 옵션</div>
+      <div class="options-label">&#x1F3AF; 오전 옵션 (선택)</div>
       <div class="option-grid">
         <div class="option-card track-culture">
           <span class="option-label">A</span>
-          <div class="option-name">&#x26F0;&#xFE0F; 도이인타논 종일투어</div>
+          <div class="option-name">&#x1F3DB;&#xFE0F; 치앙라이 투어 (종일)</div>
           <div class="option-details">
-            <div class="option-detail"><span class="detail-icon">&#x1F552;</span> 07:30 ~ 17:00</div>
-            <div class="option-detail"><span class="detail-icon">&#x1F4B8;</span> 1,500THB (~6.9만원)</div>
+            <div class="option-detail"><span class="detail-icon">&#x1F552;</span> 10:00 픽업, 종일</div>
             <div class="option-detail"><span class="detail-icon">&#x1F4CD;</span> 숙소 픽업</div>
-            <div class="option-detail"><span class="detail-icon">&#x1F465;</span> 4명 이상</div>
+            <div class="option-detail"><span class="detail-icon">&#x1F465;</span> 참가자: Cherish, Whale, Nana, Dara 등</div>
           </div>
-          <span class="option-tag">&#x26A0;&#xFE0F; 전날 예약 필수 | 점심 포함</span>
+          <span class="option-tag">&#x26A0;&#xFE0F; 참가자 확정 필요</span>
         </div>
         <div class="option-card track-activity">
           <span class="option-label">B</span>
-          <div class="option-name">&#x1F3CD;&#xFE0F; ATV + 래프팅 콤보</div>
+          <div class="option-name">&#x1F418; 코끼리 보호소</div>
           <div class="option-details">
-            <div class="option-detail"><span class="detail-icon">&#x1F552;</span> 08:30 ~ 13:00</div>
-            <div class="option-detail"><span class="detail-icon">&#x1F4B8;</span> 2,200THB (~10만원)</div>
+            <div class="option-detail"><span class="detail-icon">&#x1F552;</span> 오전~오후</div>
             <div class="option-detail"><span class="detail-icon">&#x1F4CD;</span> 숙소 픽업</div>
             <div class="option-detail"><span class="detail-icon">&#x1F465;</span> 2명 이상</div>
           </div>
         </div>
-        <div class="option-card track-culture">
+        <div class="option-card track-activity">
           <span class="option-label">C</span>
-          <div class="option-name">&#x1F3DB;&#xFE0F; 올드타운 딥투어</div>
+          <div class="option-name">&#x1F6B2; 자전거 투어 / 님만해민 탐방</div>
           <div class="option-details">
-            <div class="option-detail"><span class="detail-icon">&#x1F552;</span> 09:00 ~ 13:00</div>
-            <div class="option-detail"><span class="detail-icon">&#x1F4B8;</span> 130THB (~6,000원)</div>
+            <div class="option-detail"><span class="detail-icon">&#x1F552;</span> 오전 반나절</div>
             <div class="option-detail"><span class="detail-icon">&#x1F4CD;</span> 숙소 로비 집합</div>
             <div class="option-detail"><span class="detail-icon">&#x1F465;</span> 2명 이상</div>
           </div>
         </div>
-        <div class="option-card track-activity">
+        <div class="option-card track-healing">
           <span class="option-label">D</span>
-          <div class="option-name">&#x1F4A6; 스티키 + 매사 폭포</div>
+          <div class="option-name">&#x1F9D8; 리조트에서 죽은 듯이 쉬기</div>
           <div class="option-details">
-            <div class="option-detail"><span class="detail-icon">&#x1F552;</span> 08:30 ~ 14:00</div>
-            <div class="option-detail"><span class="detail-icon">&#x1F4B8;</span> 100THB + 교통 300~500THB</div>
-            <div class="option-detail"><span class="detail-icon">&#x1F4CD;</span> 숙소 로비 집합</div>
-            <div class="option-detail"><span class="detail-icon">&#x1F465;</span> 3명 이상</div>
+            <div class="option-detail"><span class="detail-icon">&#x1F552;</span> 종일 자유</div>
+            <div class="option-detail"><span class="detail-icon">&#x1F3CA;</span> 수영장 + 마사지 + 카페</div>
+            <div class="option-detail"><span class="detail-icon">&#x1F465;</span> 1명 이상</div>
           </div>
         </div>
       </div>
 
       <div class="afternoon-info">
-        <strong>&#x2615; 오후 자유시간:</strong> 반캉왓 예술마을 / 무에타이 / 님만해민 쇼핑
+        <strong>&#x2615; 오후 스콜 타임:</strong> 실내 / 카페 (자유)
       </div>
 
       <div class="evening-card">
-        <h4>&#x1F451; 저녁 전체 합류 - 특별 이벤트</h4>
-        <p>칸톡 디너 - 란나 전통 궁중 만찬 + 북부 춤 공연<br>(18:30 집합) | 500~800THB (~2.3~3.7만원)</p>
+        <h4>&#x1F31F; 저녁 18:00 선데이 마켓 필참!</h4>
+        <p>Ratchadamnoen Road | 사진 찍어야 함!</p>
       </div>
     </div>
 
     <!-- Day 4 -->
     <div class="day-panel" id="day4">
       <div class="day-header">
-        <h3>Day 4</h3>
+        <h3>Day 4 (6/22 월)</h3>
         <div class="day-theme">"마지막 전력 질주"</div>
       </div>
 
-      <div class="options-label">&#x1F3AF; 오전 옵션</div>
+      <div class="day-notice">
+        &#x26A0;&#xFE0F; 반캉왓 월요일 휴무!
+      </div>
+
+      <div class="options-label">&#x1F3AF; 오전 옵션 (선택)</div>
       <div class="option-grid">
-        <div class="option-card track-activity">
+        <div class="option-card track-culture">
           <span class="option-label">A</span>
-          <div class="option-name">&#x1F3CA; 호수 + 그랜드캐년</div>
+          <div class="option-name">&#x26E9;&#xFE0F; 도이수텝 사원 + 몬쨈</div>
           <div class="option-details">
-            <div class="option-detail"><span class="detail-icon">&#x1F552;</span> 09:00 ~ 14:00</div>
-            <div class="option-detail"><span class="detail-icon">&#x1F4B8;</span> 100THB + 교통 200~400THB</div>
+            <div class="option-detail"><span class="detail-icon">&#x1F552;</span> 오전 반나절</div>
             <div class="option-detail"><span class="detail-icon">&#x1F4CD;</span> 숙소 로비 집합</div>
             <div class="option-detail"><span class="detail-icon">&#x1F465;</span> 3명 이상</div>
           </div>
         </div>
-        <div class="option-card track-healing">
+        <div class="option-card track-activity">
           <span class="option-label">B</span>
-          <div class="option-name">&#x1F9D8; 요가/명상 + 왓우몽</div>
+          <div class="option-name">&#x1F4A6; 스티키 폭포 / 매사 폭포</div>
           <div class="option-details">
-            <div class="option-detail"><span class="detail-icon">&#x1F552;</span> 08:30 ~ 12:00</div>
-            <div class="option-detail"><span class="detail-icon">&#x1F4B8;</span> 300~800THB (~1.4~3.7만원)</div>
+            <div class="option-detail"><span class="detail-icon">&#x1F552;</span> 오전 반나절</div>
             <div class="option-detail"><span class="detail-icon">&#x1F4CD;</span> 숙소 로비 집합</div>
-            <div class="option-detail"><span class="detail-icon">&#x1F465;</span> 2명 이상</div>
+            <div class="option-detail"><span class="detail-icon">&#x1F465;</span> 3명 이상</div>
           </div>
         </div>
         <div class="option-card track-food">
           <span class="option-label">C</span>
           <div class="option-name">&#x1F373; 쿠킹클래스 2차</div>
           <div class="option-details">
-            <div class="option-detail"><span class="detail-icon">&#x1F552;</span> 09:00 ~ 13:00</div>
-            <div class="option-detail"><span class="detail-icon">&#x1F4B8;</span> 1,000THB (~4.6만원)</div>
+            <div class="option-detail"><span class="detail-icon">&#x1F552;</span> 오전 반나절</div>
             <div class="option-detail"><span class="detail-icon">&#x1F4CD;</span> 숙소 픽업</div>
             <div class="option-detail"><span class="detail-icon">&#x1F465;</span> 2명 이상</div>
           </div>
         </div>
-        <div class="option-card track-food">
+        <div class="option-card track-healing">
           <span class="option-label">D</span>
-          <div class="option-name">&#x1F35C; 올드타운 미식투어</div>
+          <div class="option-name">&#x1F9D8; 리조트에서 죽은 듯이 쉬기</div>
           <div class="option-details">
-            <div class="option-detail"><span class="detail-icon">&#x1F552;</span> 10:00 ~ 14:00</div>
-            <div class="option-detail"><span class="detail-icon">&#x1F4B8;</span> 300~500THB (~1.4~2.3만원)</div>
-            <div class="option-detail"><span class="detail-icon">&#x1F4CD;</span> 숙소 로비 집합</div>
-            <div class="option-detail"><span class="detail-icon">&#x1F465;</span> 2명 이상</div>
+            <div class="option-detail"><span class="detail-icon">&#x1F552;</span> 종일 자유</div>
+            <div class="option-detail"><span class="detail-icon">&#x1F3CA;</span> 수영장 + 카페</div>
+            <div class="option-detail"><span class="detail-icon">&#x1F465;</span> 1명 이상</div>
           </div>
         </div>
       </div>
 
       <div class="afternoon-info">
-        <strong>&#x2615; 오후 자유시간:</strong> 스파 풀코스 / 도자기 워크숍 / 기념품 쇼핑 / 휴식
+        <strong>&#x2615; 오후 스콜 타임:</strong> 마사지 / 카페 / 쇼핑 (자유)
       </div>
 
       <div class="evening-card">
         <h4>&#x1F307; 저녁 전체 합류</h4>
-        <p>워킹스트리트 (토/일) 또는 더하우스 디너 (평일) + 루프탑바</p>
+        <p>평일 야시장 or 단체 디너 | 밤: 마지막 밤 회포</p>
       </div>
     </div>
 
     <!-- Day 5 -->
     <div class="day-panel" id="day5">
       <div class="day-header">
-        <h3>Day 5</h3>
-        <div class="day-theme">"마지막 여유"</div>
+        <h3>Day 5 (6/23 화)</h3>
+        <div class="day-theme">"안녕 치앙마이"</div>
       </div>
 
-      <div class="options-label">&#x1F3AF; 오전 옵션</div>
+      <div class="day-notice">
+        &#x26A0;&#xFE0F; 마지막날은 단체 고정 (공항 이동)
+      </div>
+
+      <div class="options-label">&#x1F3AF; 오전~오후 자유</div>
       <div class="option-grid">
         <div class="option-card track-food">
-          <span class="option-label">A</span>
-          <div class="option-name">&#x2615; 님만해민 카페 & 쇼핑</div>
+          <span class="option-label">자유</span>
+          <div class="option-name">&#x2615; 님만해민 쇼핑</div>
           <div class="option-details">
-            <div class="option-detail"><span class="detail-icon">&#x1F552;</span> 09:00 ~ 12:00</div>
-            <div class="option-detail"><span class="detail-icon">&#x1F4B8;</span> 300~500THB</div>
-          </div>
-        </div>
-        <div class="option-card track-culture">
-          <span class="option-label">B</span>
-          <div class="option-name">&#x1F6B6; 올드타운 마지막 산책</div>
-          <div class="option-details">
-            <div class="option-detail"><span class="detail-icon">&#x1F552;</span> 07:00 ~ 11:00</div>
-            <div class="option-detail"><span class="detail-icon">&#x1F4B8;</span> 100~200THB</div>
+            <div class="option-detail"><span class="detail-icon">&#x1F552;</span> 오전~오후 자유</div>
           </div>
         </div>
         <div class="option-card track-healing">
-          <span class="option-label">C</span>
-          <div class="option-name">&#x1F486; 마지막 마사지</div>
+          <span class="option-label">자유</span>
+          <div class="option-name">&#x1F486; 마사지</div>
           <div class="option-details">
-            <div class="option-detail"><span class="detail-icon">&#x1F552;</span> 09:00 ~ 11:00</div>
-            <div class="option-detail"><span class="detail-icon">&#x1F4B8;</span> 300~500THB</div>
+            <div class="option-detail"><span class="detail-icon">&#x1F552;</span> 오전~오후 자유</div>
           </div>
         </div>
         <div class="option-card track-food">
-          <span class="option-label">D</span>
-          <div class="option-name">&#x1F381; 와로롯 기념품</div>
+          <span class="option-label">자유</span>
+          <div class="option-name">&#x2615; 카페</div>
           <div class="option-details">
-            <div class="option-detail"><span class="detail-icon">&#x1F552;</span> 09:00 ~ 11:00</div>
-            <div class="option-detail"><span class="detail-icon">&#x1F4B8;</span> 자유</div>
+            <div class="option-detail"><span class="detail-icon">&#x1F552;</span> 오전~오후 자유</div>
+          </div>
+        </div>
+        <div class="option-card track-food">
+          <span class="option-label">자유</span>
+          <div class="option-name">&#x1F381; 와로롯 마켓 기념품</div>
+          <div class="option-details">
+            <div class="option-detail"><span class="detail-icon">&#x1F552;</span> 오전~오후 자유</div>
           </div>
         </div>
       </div>
 
       <div class="evening-card" style="margin-top: 24px;">
         <h4>&#x2708;&#xFE0F; 출발</h4>
-        <p>12:00 체크아웃 &rarr; 12:30 단체 공항 이동</p>
+        <p>13:00경 체크아웃 (짐은 마사지샵이나 숙소에 맡기기) &rarr; 19:00 공항 이동 &rarr; 23:00 치앙마이 출발</p>
       </div>
     </div>
 
+  </div>
+</section>
+
+<!-- My Trip (내 일정 만들기) -->
+<section id="mytrip">
+  <div class="container">
+    <h2 class="section-title reveal">&#x1F4DD; 내 일정 만들기</h2>
+    <p class="section-subtitle reveal">Day 2~4 오전 액티비티를 선택하고 링크를 공유하세요</p>
+
+    <div class="mytrip-name-row reveal">
+      <input type="text" id="mytripName" placeholder="이름을 입력하세요" maxlength="20">
+    </div>
+
+    <!-- Day 2 선택 -->
+    <div class="mytrip-day-group reveal">
+      <div class="mytrip-day-title">&#x1F4C5; Day 2 오전 — "첫 탐험 + 새터데이 마켓"</div>
+      <div class="mytrip-options" data-day="d2">
+        <div class="mytrip-opt" data-value="A">
+          <div class="mytrip-opt-label">A</div>
+          <div class="mytrip-opt-icon">&#x1F6B6;</div>
+          <div class="mytrip-opt-name">구시가 사원 도보 탐방</div>
+          <div class="mytrip-opt-desc">반나절 | 도보</div>
+        </div>
+        <div class="mytrip-opt" data-value="B">
+          <div class="mytrip-opt-label">B</div>
+          <div class="mytrip-opt-icon">&#x1F332;</div>
+          <div class="mytrip-opt-name">스카이라인 짚라인</div>
+          <div class="mytrip-opt-desc">반나절 | 예약필수</div>
+        </div>
+        <div class="mytrip-opt" data-value="C">
+          <div class="mytrip-opt-label">C</div>
+          <div class="mytrip-opt-icon">&#x1F373;</div>
+          <div class="mytrip-opt-name">쿠킹클래스</div>
+          <div class="mytrip-opt-desc">반나절</div>
+        </div>
+        <div class="mytrip-opt" data-value="D">
+          <div class="mytrip-opt-label">D</div>
+          <div class="mytrip-opt-icon">&#x1F9D8;</div>
+          <div class="mytrip-opt-name">리조트에서 쉬기</div>
+          <div class="mytrip-opt-desc">수영장+마사지+카페</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Day 3 선택 -->
+    <div class="mytrip-day-group reveal">
+      <div class="mytrip-day-title">&#x1F4C5; Day 3 오전 — "치앙라이 or 자유"</div>
+      <div class="mytrip-options" data-day="d3">
+        <div class="mytrip-opt" data-value="A">
+          <div class="mytrip-opt-label">A</div>
+          <div class="mytrip-opt-icon">&#x1F3DB;&#xFE0F;</div>
+          <div class="mytrip-opt-name">치앙라이 투어 (종일)</div>
+          <div class="mytrip-opt-desc">종일 | 참가자 확정 필요</div>
+        </div>
+        <div class="mytrip-opt" data-value="B">
+          <div class="mytrip-opt-label">B</div>
+          <div class="mytrip-opt-icon">&#x1F418;</div>
+          <div class="mytrip-opt-name">코끼리 보호소</div>
+          <div class="mytrip-opt-desc">반나절~종일</div>
+        </div>
+        <div class="mytrip-opt" data-value="C">
+          <div class="mytrip-opt-label">C</div>
+          <div class="mytrip-opt-icon">&#x1F6B2;</div>
+          <div class="mytrip-opt-name">자전거 투어 / 님만해민</div>
+          <div class="mytrip-opt-desc">반나절</div>
+        </div>
+        <div class="mytrip-opt" data-value="D">
+          <div class="mytrip-opt-label">D</div>
+          <div class="mytrip-opt-icon">&#x1F9D8;</div>
+          <div class="mytrip-opt-name">리조트에서 쉬기</div>
+          <div class="mytrip-opt-desc">수영장+마사지+카페</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Day 4 선택 -->
+    <div class="mytrip-day-group reveal">
+      <div class="mytrip-day-title">&#x1F4C5; Day 4 오전 — "마지막 전력 질주"</div>
+      <div class="mytrip-options" data-day="d4">
+        <div class="mytrip-opt" data-value="A">
+          <div class="mytrip-opt-label">A</div>
+          <div class="mytrip-opt-icon">&#x26E9;&#xFE0F;</div>
+          <div class="mytrip-opt-name">도이수텝 사원 + 몬쨈</div>
+          <div class="mytrip-opt-desc">반나절</div>
+        </div>
+        <div class="mytrip-opt" data-value="B">
+          <div class="mytrip-opt-label">B</div>
+          <div class="mytrip-opt-icon">&#x1F4A6;</div>
+          <div class="mytrip-opt-name">스티키 폭포 / 매사 폭포</div>
+          <div class="mytrip-opt-desc">반나절</div>
+        </div>
+        <div class="mytrip-opt" data-value="C">
+          <div class="mytrip-opt-label">C</div>
+          <div class="mytrip-opt-icon">&#x1F373;</div>
+          <div class="mytrip-opt-name">쿠킹클래스 2차</div>
+          <div class="mytrip-opt-desc">반나절</div>
+        </div>
+        <div class="mytrip-opt" data-value="D">
+          <div class="mytrip-opt-label">D</div>
+          <div class="mytrip-opt-icon">&#x1F9D8;</div>
+          <div class="mytrip-opt-name">리조트에서 쉬기</div>
+          <div class="mytrip-opt-desc">수영장+카페</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mytrip-actions reveal">
+      <button class="booking-btn" id="mytripGenBtn" onclick="generateMyTripLink()">&#x1F517; 내 일정 링크 만들기</button>
+    </div>
+
+    <div class="mytrip-result" id="mytripResult">
+      <div style="font-size:1.5rem; margin-bottom:8px;">&#x2705;</div>
+      <div style="font-weight:700; font-size:1.05rem; margin-bottom:4px;" id="mytripResultName"></div>
+      <div class="mytrip-result-summary" id="mytripResultSummary"></div>
+      <div class="mytrip-result-url" id="mytripResultUrl"></div>
+      <button class="booking-btn" onclick="copyMyTripLink()" style="margin-top:12px;">&#x1F4CB; 링크 복사하기</button>
+    </div>
   </div>
 </section>
 
@@ -2337,6 +3062,9 @@ section:nth-child(even) {
             <polygon points="0,-18 -4,-12 4,-12" fill="var(--orange)"/>
             <text x="0" y="14" text-anchor="middle" font-size="8" fill="var(--text-light)">S</text>
           </g>
+
+          <!-- 팀원 동선 표시용 그룹 (JS에서 동적 생성) -->
+          <g id="mapTeamRoutes"></g>
         </svg>
 
         <div class="map-tooltip" id="mapTooltip">
@@ -2349,6 +3077,53 @@ section:nth-child(even) {
   </div>
 </section>
 
+<!-- Team (팀원 일정) -->
+<section id="team">
+  <div class="container">
+    <h2 class="section-title reveal">&#x1F465; 팀원 일정</h2>
+    <p class="section-subtitle reveal">팀원들의 Day별 선택을 확인하세요</p>
+
+    <div class="team-admin-toggle reveal">
+      <button class="team-admin-btn" id="teamAdminBtn" onclick="toggleTeamAdmin()">&#x1F6E0;&#xFE0F; 총무 모드</button>
+    </div>
+
+    <div class="team-admin-panel" id="teamAdminPanel">
+      <div style="font-weight:700; margin-bottom:12px; font-size:0.95rem;">&#x1F4CB; 팀원 해시 URL 붙여넣기</div>
+      <div class="team-admin-row">
+        <input type="text" id="teamAddUrl" placeholder="팀원의 개인 일정 URL을 붙여넣으세요">
+        <button onclick="addTeamMemberFromUrl()">추가</button>
+      </div>
+      <div style="text-align:center; margin-top:16px;">
+        <button class="team-export-btn" onclick="exportTeamData()">&#x1F4E4; 팀 데이터 내보내기 (JSON)</button>
+      </div>
+    </div>
+
+    <div class="team-grid reveal" id="teamGrid">
+      <!-- 팀원 카드가 동적으로 생성됨 -->
+    </div>
+
+    <div class="team-empty reveal" id="teamEmpty">
+      &#x1F4AD; 아직 등록된 팀원이 없습니다.<br>
+      <span style="font-size:0.88rem;">총무 모드에서 팀원 URL을 추가하거나, 팀원이 직접 일정을 공유하면 여기에 표시됩니다.</span>
+    </div>
+
+    <div class="team-detail" id="teamDetail">
+      <div class="team-detail-header">
+        <div class="team-avatar" id="teamDetailAvatar">&#x1F60A;</div>
+        <div class="team-detail-name" id="teamDetailName"></div>
+      </div>
+      <div class="team-detail-days" id="teamDetailDays">
+        <!-- Day 1~5 카드가 동적으로 생성됨 -->
+      </div>
+    </div>
+
+    <div class="team-headcount reveal" id="teamHeadcount" style="display:none;">
+      <h3>&#x1F4CA; Day별 인원 현황</h3>
+      <div id="teamHeadcountContent"></div>
+    </div>
+  </div>
+</section>
+
 <!-- Budget -->
 <section id="budget">
   <div class="container">
@@ -2356,17 +3131,17 @@ section:nth-child(even) {
     <p class="section-subtitle reveal">회사 지원 + 개인 부담으로 구성된 여행 예산</p>
 
     <div class="budget-overview reveal">
-      <div class="budget-total">인당 200만원</div>
-      <p style="color: var(--text-light); margin-bottom: 4px;">총 예산 기준</p>
+      <div class="budget-total">예산 가이드</div>
+      <p style="color: var(--text-light); margin-bottom: 4px;">항공 + 숙소 + 현지 활동비 기준</p>
       <div class="budget-breakdown">
         <div class="budget-item">
-          <div class="budget-item-value">150만원</div>
-          <div class="budget-item-label">회사 지원</div>
+          <div class="budget-item-value">회사 지원</div>
+          <div class="budget-item-label">항공 + 숙소</div>
         </div>
         <div style="color: var(--warm-gray-lighter); font-size: 1.5rem; display: flex; align-items: center;">+</div>
         <div class="budget-item">
-          <div class="budget-item-value">50만원</div>
-          <div class="budget-item-label">개인 부담</div>
+          <div class="budget-item-value">개인 부담</div>
+          <div class="budget-item-label">현지 활동비</div>
         </div>
       </div>
     </div>
@@ -2411,42 +3186,42 @@ section:nth-child(even) {
 <section id="accommodation">
   <div class="container">
     <h2 class="section-title reveal">&#x1F3E8; 숙소</h2>
-    <p class="section-subtitle reveal">올드타운 인근 풀빌라 추천 | 총 예산 600만원 (회사 지원)</p>
+    <p class="section-subtitle reveal">에어비앤비 3곳 후보 (아직 미확정) | 필수: 수영장! | 최대 12명 수용</p>
 
     <div class="accom-grid reveal">
       <div class="accom-card">
-        <div class="accom-type">&#x1F3E8;</div>
-        <div class="accom-name">호텔</div>
-        <div class="accom-price">166~276만원</div>
+        <div class="accom-type">&#x1F3E0;</div>
+        <div class="accom-name">에어비앤비 후보 1</div>
+        <div class="accom-price">미확정</div>
         <ul class="accom-features">
-          <li>조식 포함</li>
-          <li>각자 개인 공간</li>
-          <li>수영장 이용</li>
-          <li>위치 편리 (올드타운 도보)</li>
+          <li>수영장 필수!</li>
+          <li>최대 12명 수용</li>
+          <li>단체 공간</li>
+          <li>후보 선정 중</li>
         </ul>
       </div>
       <div class="accom-card recommended">
-        <span class="accom-badge">추천</span>
+        <span class="accom-badge">후보</span>
         <div class="accom-type">&#x1F3D6;&#xFE0F;</div>
-        <div class="accom-name">풀빌라</div>
-        <div class="accom-price">276~460만원</div>
+        <div class="accom-name">에어비앤비 후보 2</div>
+        <div class="accom-price">미확정</div>
         <ul class="accom-features">
+          <li>수영장 필수!</li>
+          <li>최대 12명 수용</li>
           <li>프라이빗 풀</li>
-          <li>단체 이벤트 공간</li>
           <li>BBQ / 파티 가능</li>
-          <li>함께하는 추억</li>
-          <li>가성비 우수</li>
+          <li>따로 또 같이 추억</li>
         </ul>
       </div>
       <div class="accom-card">
-        <div class="accom-type">&#x1F500;</div>
-        <div class="accom-name">하이브리드</div>
-        <div class="accom-price">350~478만원</div>
+        <div class="accom-type">&#x1F3E0;</div>
+        <div class="accom-name">에어비앤비 후보 3</div>
+        <div class="accom-price">미확정</div>
         <ul class="accom-features">
-          <li>풀빌라 + 호텔 조합</li>
-          <li>프라이빗 풀 (일부)</li>
-          <li>개인 공간 보장 (일부)</li>
-          <li>유연한 구성</li>
+          <li>수영장 필수!</li>
+          <li>최대 12명 수용</li>
+          <li>위치 편리</li>
+          <li>후보 선정 중</li>
         </ul>
       </div>
     </div>
@@ -2462,46 +3237,183 @@ section:nth-child(even) {
     <div class="checklist-group reveal">
       <div class="checklist-group-title">&#x1F534; 필수 준비물</div>
       <div class="checklist-items">
-        <div class="checklist-item" data-key="c1"><div class="check-box">&#x2713;</div><div class="check-label">여권 (유효기간 6개월+)</div></div>
-        <div class="checklist-item" data-key="c2"><div class="check-box">&#x2713;</div><div class="check-label">TDAC 등록 (태국 입국)</div></div>
-        <div class="checklist-item" data-key="c3"><div class="check-box">&#x2713;</div><div class="check-label">여행자보험 가입</div></div>
-        <div class="checklist-item" data-key="c4"><div class="check-box">&#x2713;</div><div class="check-label">선크림 / 모자</div></div>
-        <div class="checklist-item" data-key="c5"><div class="check-box">&#x2713;</div><div class="check-label">편한 신발</div></div>
-        <div class="checklist-item" data-key="c6"><div class="check-box">&#x2713;</div><div class="check-label">현금 (THB) + 카드</div></div>
+        <div class="checklist-item" data-key="c1"><div class="check-box">&#x2713;</div><div class="check-label">여권 (태국은 무비자 60일)</div></div>
+        <div class="checklist-item" data-key="c2"><div class="check-box">&#x2713;</div><div class="check-label">샤워기 필터</div></div>
+        <div class="checklist-item" data-key="c3"><div class="check-box">&#x2713;</div><div class="check-label">텀블러</div></div>
+        <div class="checklist-item" data-key="c4"><div class="check-box">&#x2713;</div><div class="check-label">팀복</div></div>
+        <div class="checklist-item" data-key="c5"><div class="check-box">&#x2713;</div><div class="check-label">우산/우비 (6월 우기!)</div></div>
+        <div class="checklist-item" data-key="c6"><div class="check-box">&#x2713;</div><div class="check-label">선크림 / 모자</div></div>
       </div>
     </div>
 
     <div class="checklist-group reveal">
       <div class="checklist-group-title">&#x1F7E1; 선택 준비물</div>
       <div class="checklist-items">
-        <div class="checklist-item" data-key="c7"><div class="check-box">&#x2713;</div><div class="check-label">수영복</div></div>
-        <div class="checklist-item" data-key="c8"><div class="check-box">&#x2713;</div><div class="check-label">트레킹 신발</div></div>
-        <div class="checklist-item" data-key="c9"><div class="check-box">&#x2713;</div><div class="check-label">모기 기피제</div></div>
-        <div class="checklist-item" data-key="c10"><div class="check-box">&#x2713;</div><div class="check-label">방수팩</div></div>
-        <div class="checklist-item" data-key="c11"><div class="check-box">&#x2713;</div><div class="check-label">보조배터리</div></div>
+        <div class="checklist-item" data-key="c7"><div class="check-box">&#x2713;</div><div class="check-label">수영복 (숙소 수영장!)</div></div>
+        <div class="checklist-item" data-key="c8"><div class="check-box">&#x2713;</div><div class="check-label">모기 기피제</div></div>
+        <div class="checklist-item" data-key="c9"><div class="check-box">&#x2713;</div><div class="check-label">방수 신발/슬리퍼</div></div>
+        <div class="checklist-item" data-key="c10"><div class="check-box">&#x2713;</div><div class="check-label">보조배터리</div></div>
       </div>
     </div>
 
     <div class="checklist-group reveal">
       <div class="checklist-group-title">&#x1F4C5; 사전 예약 필수</div>
       <div class="checklist-items">
-        <div class="checklist-item" data-key="c12"><div class="check-box">&#x2713;</div><div class="check-label">코끼리 보호소 (2주 전)</div></div>
-        <div class="checklist-item" data-key="c13"><div class="check-box">&#x2713;</div><div class="check-label">칸톡 디너 (3일 전)</div></div>
-        <div class="checklist-item" data-key="c14"><div class="check-box">&#x2713;</div><div class="check-label">짚라인 (3일 전)</div></div>
-        <div class="checklist-item" data-key="c15"><div class="check-box">&#x2713;</div><div class="check-label">도이인타논 (전날)</div></div>
-        <div class="checklist-item" data-key="c16"><div class="check-box">&#x2713;</div><div class="check-label">쿠킹클래스 (전날)</div></div>
+        <div class="checklist-item" data-key="c12"><div class="check-box">&#x2713;</div><div class="check-label">치앙라이 투어 (참가자 확정 필요)</div></div>
+        <div class="checklist-item" data-key="c13"><div class="check-box">&#x2713;</div><div class="check-label">스카이라인 짚라인 (3일 전)</div></div>
+        <div class="checklist-item" data-key="c14"><div class="check-box">&#x2713;</div><div class="check-label">트젠쇼 (비공식, 현지에서)</div></div>
+        <div class="checklist-item" data-key="c15"><div class="check-box">&#x2713;</div><div class="check-label">3박치 물/간편식 장보기 (지원자: Cherish)</div></div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- Tips -->
+<!-- 미슐랭 님만 맛집 -->
+<section id="food">
+  <div class="container">
+    <h2 class="section-title reveal">&#x1F37D;&#xFE0F; 님만해민 미슐랭 맛집</h2>
+    <p class="section-subtitle reveal">미슐랭 가이드 태국 2024~2026 선정 | 님만해민 로드 도보권</p>
+
+    <div class="food-grid reveal">
+
+      <div class="food-card">
+        <span class="food-card-badge bib-gourmand">&#x1F534; Bib Gourmand</span>
+        <div class="food-card-name">Kao Soy Nimman (&#xC874;&#xC18C;&#xC774; &#xB2D8;&#xB9CC;)</div>
+        <div class="food-card-cuisine">&#x1F35C; 북부 태국 누들 &middot; 카오소이 전문</div>
+        <div class="food-card-desc">
+          치앙마이 대표 음식 카오소이의 성지. 소프트쉘 크랩 카오소이가 시그니처 메뉴로,
+          코코넛 커리 베이스에 바삭한 면과 부드러운 면의 조합이 일품.
+          소고기/돼지/닭/해산물 등 다양한 토핑 선택 가능.
+        </div>
+        <div class="food-card-meta">
+          <span class="food-meta-tag">&#x1F4B0; 100~200THB</span>
+          <span class="food-meta-tag">&#x1F4CD; Nimman Soi 7</span>
+          <span class="food-meta-tag">&#x23F0; 10:00~21:00</span>
+        </div>
+        <div class="food-card-recommend">&#x1F525; 필수! 소프트쉘 크랩 카오소이 + 남뿌릭눔</div>
+      </div>
+
+      <div class="food-card">
+        <span class="food-card-badge bib-gourmand">&#x1F534; Bib Gourmand</span>
+        <div class="food-card-name">Ginger Farm Kitchen (&#xC9C4;&#xC800;&#xD31C; &#xD0A4;&#xCE5C;)</div>
+        <div class="food-card-cuisine">&#x1F33F; 팜투테이블 &middot; 북부 태국 요리</div>
+        <div class="food-card-desc">
+          자체 농장에서 유기농 식재료를 직접 조달하는 팜투시티 콘셉트. MSG 무첨가.
+          매홍손 스타일 항레이 커리, 바삭한 방목 돼지 삼겹살과 수제 피클이 시그니처.
+          2020년부터 연속 빕 구르망 선정.
+        </div>
+        <div class="food-card-meta">
+          <span class="food-meta-tag">&#x1F4B0; 200~400THB</span>
+          <span class="food-meta-tag">&#x1F4CD; One Nimman 1F</span>
+          <span class="food-meta-tag">&#x23F0; 11:00~21:00</span>
+        </div>
+        <div class="food-card-recommend">&#x1F525; 항레이 커리 + 프리레인지 포크벨리 추천</div>
+      </div>
+
+      <div class="food-card">
+        <span class="food-card-badge bib-gourmand">&#x1F534; Bib Gourmand</span>
+        <div class="food-card-name">Kuakai Nimman (&#xCFE0;&#xC544;&#xCE74;&#xC774; &#xB2D8;&#xB9CC;)</div>
+        <div class="food-card-cuisine">&#x1F357; 태국 누들 &middot; 꾸어까이 전문</div>
+        <div class="food-card-desc">
+          넓적한 쌀면과 닭고기를 철판에 볶아내는 꾸어까이(&#xE01;&#xEB;&#xECD;&#xE22;&#xE44;&#xE01;&#xE48;) 전문점.
+          뜨거운 스킬렛 그대로 서빙해 끝까지 따끈한 맛.
+          합리적 가격에 든든한 한 끼로 현지인에게 압도적 인기.
+        </div>
+        <div class="food-card-meta">
+          <span class="food-meta-tag">&#x1F4B0; 80~150THB</span>
+          <span class="food-meta-tag">&#x1F4CD; Sai Nam Phueng, Su Thep</span>
+          <span class="food-meta-tag">&#x23F0; 10:30~20:30</span>
+        </div>
+        <div class="food-card-recommend">&#x1F525; 꾸어까이 오리지널 + 똠얌 누들</div>
+      </div>
+
+      <div class="food-card">
+        <span class="food-card-badge selected">&#x2B50; Michelin Selected</span>
+        <div class="food-card-name">Oxygen Dining Room (&#xC625;&#xC2DC;&#xC820; &#xB2E4;&#xC774;&#xB2DD; &#xB8F8;)</div>
+        <div class="food-card-cuisine">&#x1F372; 프렌치-태국 퓨전 &middot; 파인다이닝</div>
+        <div class="food-card-desc">
+          프랑스 출신 셰프 Alexandre Demard가 이끄는 파인다이닝.
+          태국 식재료에 프렌치 테크닉을 접목한 창의적인 코스 요리.
+          님만 인근에서 특별한 저녁을 원한다면 여기.
+        </div>
+        <div class="food-card-meta">
+          <span class="food-meta-tag">&#x1F4B0; 1,200~2,500THB</span>
+          <span class="food-meta-tag">&#x1F4CD; Nimman 인근</span>
+          <span class="food-meta-tag">&#x23F0; 18:00~22:00</span>
+        </div>
+        <div class="food-card-recommend">&#x2728; 특별한 날 디너 코스 추천 (예약 필수)</div>
+      </div>
+
+      <div class="food-card">
+        <span class="food-card-badge bib-gourmand">&#x1F534; Bib Gourmand</span>
+        <div class="food-card-name">Huen Muan Jai (&#xD5A8; &#xBB34;&#xC548; &#xC790;&#xC774;)</div>
+        <div class="food-card-cuisine">&#x1F962; 란나 전통 요리 &middot; 북부 태국</div>
+        <div class="food-card-desc">
+          치앙마이 란나 전통 요리의 정수. 복잡하면서도 균형 잡힌 양념이 특징.
+          깽행레이, 남쁘릭옹, 사이우아(치앙마이 소시지) 등
+          정통 북부 메뉴를 합리적 가격에 맛볼 수 있는 곳. 2인 풀코스 약 500THB.
+        </div>
+        <div class="food-card-meta">
+          <span class="food-meta-tag">&#x1F4B0; 150~300THB</span>
+          <span class="food-meta-tag">&#x1F4CD; Chang Phueak (님만 10분)</span>
+          <span class="food-meta-tag">&#x23F0; 10:00~22:00</span>
+        </div>
+        <div class="food-card-recommend">&#x1F525; 깽행레이 + 사이우아 + 남쁘릭눔 세트</div>
+      </div>
+
+      <div class="food-card">
+        <span class="food-card-badge bib-gourmand">&#x1F534; Bib Gourmand 2026 NEW</span>
+        <div class="food-card-name">CHAWEE (&#xCC28;&#xC704;)</div>
+        <div class="food-card-cuisine">&#x1F33E; 시즌 메뉴 &middot; 가정식 태국 요리</div>
+        <div class="food-card-desc">
+          2026년 신규 빕 구르망 선정! 가족 레시피에서 영감을 받은 시즌 메뉴가 특징.
+          계절마다 바뀌는 메뉴로 방문할 때마다 새로운 맛을 경험.
+          로컬 식재료를 활용한 정성 가득한 홈스타일 요리.
+        </div>
+        <div class="food-card-meta">
+          <span class="food-meta-tag">&#x1F4B0; 200~400THB</span>
+          <span class="food-meta-tag">&#x1F4CD; Chiang Mai</span>
+          <span class="food-meta-tag">&#x1F195; 2026 신규 선정</span>
+        </div>
+        <div class="food-card-recommend">&#x2728; 2026 신규 선정! 시즌 메뉴 꼭 체크</div>
+      </div>
+
+    </div>
+
+    <div class="food-source reveal">
+      &#x1F4D6; 출처: MICHELIN Guide Thailand 2024~2026 &mdash;
+      가격/영업시간은 변동될 수 있으니 방문 전 확인하세요
+    </div>
+  </div>
+</section>
+
 <section id="tips">
   <div class="container">
     <h2 class="section-title reveal">&#x1F4A1; 현지 꿀팁</h2>
     <p class="section-subtitle reveal">치앙마이를 200% 즐기는 팁</p>
 
     <div class="tips-grid reveal">
+      <div class="tip-card">
+        <h3>&#x1F327;&#xFE0F; 우기 대응법</h3>
+        <ul class="tip-list">
+          <li><strong>오전에 야외 액티비티, 오후 2~5시는 실내!</strong></li>
+          <li>접이식 우산 필수, 방수 슬리퍼 추천</li>
+          <li>스콜은 보통 30분~1시간이면 그침</li>
+          <li>카페에서 비 피하며 커피 한잔이 정석</li>
+        </ul>
+      </div>
+
+      <div class="tip-card">
+        <h3>&#x1F6D2; 장보기</h3>
+        <ul class="tip-list">
+          <li><strong>3박치 물/간편식</strong>은 첫날 or 둘째날에 한번에!</li>
+          <li><strong>Big C</strong> 또는 <strong>Rimping 슈퍼</strong> 추천</li>
+          <li>지원자: Cherish</li>
+          <li>생수, 컵라면, 간식류 대량구매</li>
+        </ul>
+      </div>
+
       <div class="tip-card">
         <h3>&#x1F695; 교통</h3>
         <ul class="tip-list">
@@ -2570,7 +3482,7 @@ section:nth-child(even) {
 
 <!-- Footer -->
 <footer class="footer">
-  <p class="footer-main">Made with &#x2764;&#xFE0F; by Travel Planner Harness</p>
+  <p class="footer-main">Made with &#x2764;&#xFE0F; by 16조 조장 Whale (DX개발팀)</p>
   <p>이 페이지를 PDF로 저장하려면 Ctrl+P (Cmd+P) &rarr; PDF로 저장을 이용하세요</p>
 </footer>
 
@@ -2695,32 +3607,136 @@ section:nth-child(even) {
   });
 })();
 
+// ===== 팀 데이터 (총무가 git push 시 포함) =====
+var TEAM_DATA = [
+  // 총무가 팀원 해시를 등록하면 여기에 추가됨
+];
+
 // ===== 예약 정보 (URL hash 방식 — Ziptable 스타일) =====
 // 데이터를 URL # 뒤에 압축 인코딩하여 서버 없이 공유
 var BOOKING_KEY = 'cm-trip-booking';
+var TEAM_KEY = 'cm-trip-team';
+var MYTRIP_KEY = 'cm-trip-mytrip';
+
+// 액티비티 매핑 데이터
+var ACTIVITY_OPTIONS = {
+  d2: {
+    A: { icon: '\uD83D\uDEB6', name: '구시가 사원 도보 탐방', desc: '반나절 | 도보' },
+    B: { icon: '\uD83C\uDF32', name: '스카이라인 짚라인', desc: '반나절 | 예약필수' },
+    C: { icon: '\uD83C\uDF73', name: '쿠킹클래스', desc: '반나절' },
+    D: { icon: '\uD83E\uDDD8', name: '리조트에서 쉬기', desc: '수영장+마사지+카페' }
+  },
+  d3: {
+    A: { icon: '\uD83C\uDFDB\uFE0F', name: '치앙라이 투어 (종일)', desc: '종일 | 참가자 확정 필요' },
+    B: { icon: '\uD83D\uDC18', name: '코끼리 보호소', desc: '반나절~종일' },
+    C: { icon: '\uD83D\uDEB2', name: '자전거 투어 / 님만해민', desc: '반나절' },
+    D: { icon: '\uD83E\uDDD8', name: '리조트에서 쉬기', desc: '수영장+마사지+카페' }
+  },
+  d4: {
+    A: { icon: '\u26E9\uFE0F', name: '도이수텝 사원 + 몬쨈', desc: '반나절' },
+    B: { icon: '\uD83D\uDCA6', name: '스티키 폭포 / 매사 폭포', desc: '반나절' },
+    C: { icon: '\uD83C\uDF73', name: '쿠킹클래스 2차', desc: '반나절' },
+    D: { icon: '\uD83E\uDDD8', name: '리조트에서 쉬기', desc: '수영장+카페' }
+  }
+};
+
+// 액티비티 → 지도 스팟 매핑 (data-name 기준)
+var ACTIVITY_MAP_SPOTS = {
+  'd2A': ['왓 체디루앙', '왓 프라싱', '왓 치앙만'],
+  'd2B': ['짚라인 어드벤처'],
+  'd2C': ['올드타운 맛집투어'],
+  'd2D': [],
+  'd3A': [],
+  'd3B': ['코끼리 보호소'],
+  'd3C': ['님만해민 카페거리'],
+  'd3D': [],
+  'd4A': ['도이수텝 사원', '몬쨈'],
+  'd4B': ['스티키 폭포', '매사 폭포'],
+  'd4C': ['올드타운 맛집투어'],
+  'd4D': []
+};
+
+// 지도 스팟 좌표 (SVG viewBox 기준, 올드타운 중심 = 405, 310)
+var SPOT_COORDS = {
+  '코끼리 보호소': { x: 100, y: 320 },
+  '짚라인 어드벤처': { x: 130, y: 390 },
+  '도이수텝 사원': { x: 235, y: 105 },
+  '몬쨈': { x: 445, y: 72 },
+  '도이인타논': { x: 185, y: 510 },
+  '스티키 폭포': { x: 630, y: 140 },
+  '매사 폭포': { x: 690, y: 180 },
+  '후아이뚱타오 호수': { x: 620, y: 530 },
+  '그랜드캐년': { x: 640, y: 470 },
+  '왓 체디루앙': { x: 370, y: 300 },
+  '왓 우몽': { x: 460, y: 350 },
+  '반캉왓': { x: 340, y: 440 },
+  '올드타운 맛집투어': { x: 380, y: 390 }
+};
+
+var DAY_ROUTE_COLORS = { d2: '#3B82F6', d3: '#22C55E', d4: '#8B5CF6' };
+var OLDTOWN_CENTER = { x: 405, y: 310 };
+
+function encodeBase64Url(str) {
+  try {
+    var bytes = new TextEncoder().encode(str);
+    var binary = '';
+    bytes.forEach(function(b) { binary += String.fromCharCode(b); });
+    return btoa(binary).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+  } catch(e) { return ''; }
+}
+
+function decodeBase64Url(b64) {
+  try {
+    b64 = b64.replace(/-/g, '+').replace(/_/g, '/');
+    while (b64.length % 4) b64 += '=';
+    var binary = atob(b64);
+    var bytes = new Uint8Array(binary.length);
+    for (var i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+    return new TextDecoder().decode(bytes);
+  } catch(e) { return ''; }
+}
 
 function compressToHash(obj) {
   try {
     var json = JSON.stringify(obj);
-    // TextEncoder로 UTF-8 바이트로 변환 후 base64
-    var bytes = new TextEncoder().encode(json);
-    var binary = '';
-    bytes.forEach(function(b) { binary += String.fromCharCode(b); });
-    return 'b=' + btoa(binary).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+    return 'b=' + encodeBase64Url(json);
   } catch(e) { return ''; }
+}
+
+function parseHashParams(hash) {
+  // hash 문자열에서 b= 과 p= 파라미터를 각각 파싱
+  var result = { booking: null, personal: null };
+  if (!hash) return result;
+  var parts = hash.split('&');
+  for (var i = 0; i < parts.length; i++) {
+    var part = parts[i];
+    if (part.indexOf('b=') === 0) {
+      try {
+        result.booking = JSON.parse(decodeBase64Url(part.slice(2)));
+      } catch(e) {}
+    } else if (part.indexOf('p=') === 0) {
+      try {
+        result.personal = JSON.parse(decodeBase64Url(part.slice(2)));
+      } catch(e) {}
+    }
+  }
+  return result;
 }
 
 function decompressFromHash(hash) {
   try {
     if (!hash || hash.indexOf('b=') === -1) return null;
-    var b64 = hash.split('b=')[1].split('&')[0].replace(/-/g, '+').replace(/_/g, '/');
-    // 패딩 복원
-    while (b64.length % 4) b64 += '=';
-    var binary = atob(b64);
-    var bytes = new Uint8Array(binary.length);
-    for (var i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
-    var json = new TextDecoder().decode(bytes);
-    return JSON.parse(json);
+    var parsed = parseHashParams(hash);
+    return parsed.booking;
+  } catch(e) { return null; }
+}
+
+function getPersonalFromHash() {
+  try {
+    var hash = window.location.hash.slice(1);
+    if (!hash || hash.indexOf('p=') === -1) return null;
+    var parsed = parseHashParams(hash);
+    return parsed.personal;
   } catch(e) { return null; }
 }
 
@@ -2740,8 +3756,21 @@ function getBookingData() {
   }
 }
 
+function buildHashString(bookingData, personalData) {
+  var parts = [];
+  if (bookingData) {
+    parts.push('b=' + encodeBase64Url(JSON.stringify(bookingData)));
+  }
+  if (personalData) {
+    parts.push('p=' + encodeBase64Url(JSON.stringify(personalData)));
+  }
+  return parts.join('&');
+}
+
 function updateUrlHash(data) {
-  var hash = compressToHash(data);
+  // 기존 개인 일정 데이터 유지
+  var personal = getPersonalFromHash();
+  var hash = buildHashString(data, personal);
   if (hash) {
     history.replaceState(null, '', window.location.pathname + '#' + hash);
   }
@@ -2910,6 +3939,465 @@ document.getElementById('bookingModal').addEventListener('click', function(e) {
 // 초기 렌더링
 renderBookingDisplay();
 
+// ===== 내 일정 만들기 (MyTrip) =====
+(function() {
+  var optGroups = document.querySelectorAll('.mytrip-options');
+  optGroups.forEach(function(group) {
+    var opts = group.querySelectorAll('.mytrip-opt');
+    opts.forEach(function(opt) {
+      opt.addEventListener('click', function() {
+        // 같은 day 그룹 안에서 하나만 선택
+        opts.forEach(function(o) { o.classList.remove('selected'); });
+        this.classList.add('selected');
+      });
+    });
+  });
+})();
+
+function getMyTripSelections() {
+  var name = (document.getElementById('mytripName').value || '').trim();
+  var selections = {};
+  var optGroups = document.querySelectorAll('.mytrip-options');
+  optGroups.forEach(function(group) {
+    var day = group.getAttribute('data-day');
+    var selected = group.querySelector('.mytrip-opt.selected');
+    if (selected) {
+      selections[day] = selected.getAttribute('data-value');
+    }
+  });
+  return { name: name, d2: selections.d2 || '', d3: selections.d3 || '', d4: selections.d4 || '' };
+}
+
+function applyMyTripSelections(data) {
+  if (!data) return;
+  if (data.name) {
+    document.getElementById('mytripName').value = data.name;
+  }
+  ['d2', 'd3', 'd4'].forEach(function(day) {
+    if (data[day]) {
+      var group = document.querySelector('.mytrip-options[data-day="' + day + '"]');
+      if (group) {
+        var opts = group.querySelectorAll('.mytrip-opt');
+        opts.forEach(function(opt) {
+          opt.classList.remove('selected');
+          if (opt.getAttribute('data-value') === data[day]) {
+            opt.classList.add('selected');
+          }
+        });
+      }
+    }
+  });
+}
+
+function generateMyTripLink() {
+  var data = getMyTripSelections();
+  if (!data.name) {
+    alert('이름을 입력해주세요!');
+    document.getElementById('mytripName').focus();
+    return;
+  }
+  if (!data.d2 || !data.d3 || !data.d4) {
+    alert('Day 2, 3, 4 모두 선택해주세요!');
+    return;
+  }
+
+  var personalData = { name: data.name, d2: data.d2, d3: data.d3, d4: data.d4 };
+  var bookingData = getBookingData();
+  var hash = buildHashString(bookingData, personalData);
+  var url = window.location.origin + window.location.pathname + '#' + hash;
+
+  // localStorage에도 저장
+  try { localStorage.setItem(MYTRIP_KEY, JSON.stringify(personalData)); } catch(e) {}
+
+  // URL 업데이트
+  history.replaceState(null, '', window.location.pathname + '#' + hash);
+
+  // 결과 표시
+  var result = document.getElementById('mytripResult');
+  document.getElementById('mytripResultName').textContent = data.name + '님의 일정';
+  document.getElementById('mytripResultUrl').textContent = url;
+
+  var summaryHtml = '';
+  ['d2', 'd3', 'd4'].forEach(function(day) {
+    var opt = ACTIVITY_OPTIONS[day][data[day]];
+    if (opt) {
+      var dayLabel = day === 'd2' ? 'Day 2' : day === 'd3' ? 'Day 3' : 'Day 4';
+      summaryHtml += '<span class="mytrip-result-tag">' + dayLabel + ': ' + opt.icon + ' ' + opt.name + '</span>';
+    }
+  });
+  document.getElementById('mytripResultSummary').innerHTML = summaryHtml;
+  result.classList.add('show');
+
+  // 지도에 동선 표시
+  highlightMapForPersonal(personalData);
+
+  // 스크롤
+  result.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+var _lastMyTripUrl = '';
+function copyMyTripLink() {
+  var url = document.getElementById('mytripResultUrl').textContent;
+  if (!url) return;
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(url).then(function() {
+      showCopyToastMsg('\u2705 링크가 클립보드에 복사되었어요!', '\uCE74\uD1A1\uC5D0 \uBD99\uC5EC\uB123\uAE30\uD558\uBA74 \uD300\uC6D0\uB4E4\uB3C4 \uB0B4 \uC77C\uC815\uC744 \uBCFC \uC218 \uC788\uC5B4\uC694');
+    });
+  } else {
+    var ta = document.createElement('textarea');
+    ta.value = url;
+    ta.style.cssText = 'position:fixed;opacity:0';
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    showCopyToastMsg('\u2705 링크가 클립보드에 복사되었어요!', '\uCE74\uD1A1\uC5D0 \uBD99\uC5EC\uB123\uAE30\uD558\uBA74 \uD300\uC6D0\uB4E4\uB3C4 \uB0B4 \uC77C\uC815\uC744 \uBCFC \uC218 \uC788\uC5B4\uC694');
+  }
+}
+
+function showCopyToastMsg(main, sub) {
+  var toast = document.getElementById('copyToast');
+  toast.innerHTML = main + (sub ? '<br><small>' + sub + '</small>' : '');
+  toast.classList.add('show');
+  setTimeout(function() { toast.classList.remove('show'); }, 2500);
+}
+
+// ===== 팀원 관리 =====
+function getTeamData() {
+  // 1순위: 하드코딩된 TEAM_DATA
+  if (TEAM_DATA && TEAM_DATA.length > 0) return TEAM_DATA.slice();
+  // 2순위: localStorage
+  try {
+    return JSON.parse(localStorage.getItem(TEAM_KEY)) || [];
+  } catch(e) {
+    return [];
+  }
+}
+
+function saveTeamData(team) {
+  try {
+    localStorage.setItem(TEAM_KEY, JSON.stringify(team));
+  } catch(e) {}
+}
+
+function toggleTeamAdmin() {
+  var btn = document.getElementById('teamAdminBtn');
+  var panel = document.getElementById('teamAdminPanel');
+  btn.classList.toggle('active');
+  panel.classList.toggle('show');
+  renderTeam();
+}
+
+function addTeamMemberFromUrl() {
+  var input = document.getElementById('teamAddUrl');
+  var url = input.value.trim();
+  if (!url) { alert('URL을 입력해주세요!'); return; }
+
+  // URL에서 p= 파라미터 추출
+  var hashPart = '';
+  var hashIdx = url.indexOf('#');
+  if (hashIdx !== -1) {
+    hashPart = url.slice(hashIdx + 1);
+  } else {
+    // 해시 부분만 입력된 경우
+    hashPart = url;
+  }
+
+  var parsed = parseHashParams(hashPart);
+  if (!parsed.personal || !parsed.personal.name) {
+    alert('\uC720\uD6A8\uD558\uC9C0 \uC54A\uC740 URL\uC785\uB2C8\uB2E4. \uD300\uC6D0\uC758 \uAC1C\uC778 \uC77C\uC815 \uB9C1\uD06C\uB97C \uBD99\uC5EC\uB123\uC5B4\uC8FC\uC138\uC694.');
+    return;
+  }
+
+  var team = getTeamData();
+  // 중복 체크
+  var exists = team.some(function(m) { return m.name === parsed.personal.name; });
+  if (exists) {
+    // 기존 데이터 업데이트
+    team = team.map(function(m) {
+      if (m.name === parsed.personal.name) return parsed.personal;
+      return m;
+    });
+  } else {
+    team.push(parsed.personal);
+  }
+
+  saveTeamData(team);
+  input.value = '';
+  renderTeam();
+}
+
+function removeTeamMember(name) {
+  var team = getTeamData();
+  team = team.filter(function(m) { return m.name !== name; });
+  saveTeamData(team);
+  // TEAM_DATA도 동기화 (localStorage 우선 사용하도록)
+  if (TEAM_DATA.length > 0) {
+    TEAM_DATA = team;
+  }
+  renderTeam();
+}
+
+function exportTeamData() {
+  var team = getTeamData();
+  if (team.length === 0) {
+    alert('\uB4F1\uB85D\uB41C \uD300\uC6D0\uC774 \uC5C6\uC2B5\uB2C8\uB2E4.');
+    return;
+  }
+  var json = JSON.stringify(team, null, 2);
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(json).then(function() {
+      showCopyToastMsg('\u2705 \uD300 \uB370\uC774\uD130\uAC00 \uBCF5\uC0AC\uB418\uC5C8\uC5B4\uC694!', 'index.html\uC758 TEAM_DATA \uBCC0\uC218\uC5D0 \uBD99\uC5EC\uB123\uC73C\uC138\uC694');
+    });
+  } else {
+    prompt('아래 JSON을 복사하세요:', json);
+  }
+}
+
+function selectTeamMember(name) {
+  var team = getTeamData();
+  var member = team.find(function(m) { return m.name === name; });
+  if (!member) return;
+
+  // 카드 활성화
+  var cards = document.querySelectorAll('.team-card');
+  cards.forEach(function(c) {
+    c.classList.toggle('active', c.getAttribute('data-name') === name);
+  });
+
+  // 상세 표시
+  var detail = document.getElementById('teamDetail');
+  document.getElementById('teamDetailName').textContent = member.name + '\uB2D8\uC758 \uC77C\uC815';
+
+  var daysHtml = '';
+  // Day 1 (고정)
+  daysHtml += '<div class="team-day-card"><div class="team-day-label">Day 1</div><div class="team-day-value">\u2708\uFE0F \uB3C4\uCC29 + \uCCB4\uD06C\uC778 (\uB2E8\uCCB4)</div></div>';
+  // Day 2~4
+  ['d2', 'd3', 'd4'].forEach(function(day) {
+    var dayNum = day.charAt(1);
+    var choice = member[day];
+    var opt = ACTIVITY_OPTIONS[day] && ACTIVITY_OPTIONS[day][choice];
+    var text = opt ? (opt.icon + ' ' + opt.name) : '\uBBF8\uC120\uD0DD';
+    daysHtml += '<div class="team-day-card"><div class="team-day-label">Day ' + dayNum + '</div><div class="team-day-value">' + text + '</div></div>';
+  });
+  // Day 5 (고정)
+  daysHtml += '<div class="team-day-card"><div class="team-day-label">Day 5</div><div class="team-day-value">\u2708\uFE0F \uC790\uC720 + \uACF5\uD56D \uC774\uB3D9 (\uB2E8\uCCB4)</div></div>';
+
+  document.getElementById('teamDetailDays').innerHTML = daysHtml;
+  detail.classList.add('show');
+
+  // 지도 동선 표시
+  highlightMapForPersonal(member);
+
+  // 지도로 스크롤
+  document.getElementById('map').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function renderTeam() {
+  var team = getTeamData();
+  var grid = document.getElementById('teamGrid');
+  var empty = document.getElementById('teamEmpty');
+  var headcount = document.getElementById('teamHeadcount');
+  var isAdmin = document.getElementById('teamAdminPanel').classList.contains('show');
+
+  if (team.length === 0) {
+    grid.innerHTML = '';
+    empty.style.display = '';
+    headcount.style.display = 'none';
+    document.getElementById('teamDetail').classList.remove('show');
+    return;
+  }
+
+  empty.style.display = 'none';
+
+  var html = '';
+  team.forEach(function(member) {
+    var summary = [];
+    ['d2', 'd3', 'd4'].forEach(function(day) {
+      var opt = ACTIVITY_OPTIONS[day] && ACTIVITY_OPTIONS[day][member[day]];
+      if (opt) {
+        var dayLabel = day === 'd2' ? 'D2' : day === 'd3' ? 'D3' : 'D4';
+        summary.push(dayLabel + ': ' + opt.icon + ' ' + opt.name);
+      }
+    });
+
+    html += '<div class="team-card" data-name="' + member.name + '" onclick="selectTeamMember(\'' + member.name.replace(/'/g, "\\'") + '\')">';
+    html += '<div class="team-avatar">\uD83D\uDE0A</div>';
+    html += '<div class="team-card-info">';
+    html += '<div class="team-card-name">' + member.name + '</div>';
+    html += '<div class="team-card-summary">' + summary.join(' | ') + '</div>';
+    html += '</div>';
+    if (isAdmin) {
+      html += '<button class="team-card-remove" style="display:block" onclick="event.stopPropagation(); removeTeamMember(\'' + member.name.replace(/'/g, "\\'") + '\')">&times;</button>';
+    }
+    html += '</div>';
+  });
+  grid.innerHTML = html;
+
+  // Day별 인원 현황
+  headcount.style.display = '';
+  var hcHtml = '';
+  ['d2', 'd3', 'd4'].forEach(function(day) {
+    var dayLabel = day === 'd2' ? 'Day 2' : day === 'd3' ? 'Day 3' : 'Day 4';
+    var dayTheme = day === 'd2' ? '\uCCAB \uD0D0\uD5D8 + \uC0C8\uD130\uB370\uC774 \uB9C8\uCF13' : day === 'd3' ? '\uCE58\uC559\uB77C\uC774 or \uC790\uC720' : '\uB9C8\uC9C0\uB9C9 \uC804\uB825 \uC9C8\uC8FC';
+    hcHtml += '<div class="team-hc-day">';
+    hcHtml += '<div class="team-hc-day-title">\uD83D\uDCC5 ' + dayLabel + ' — ' + dayTheme + '</div>';
+    var options = ACTIVITY_OPTIONS[day];
+    ['A', 'B', 'C', 'D'].forEach(function(choice) {
+      var opt = options[choice];
+      var members = team.filter(function(m) { return m[day] === choice; });
+      var names = members.map(function(m) { return m.name; }).join(', ');
+      hcHtml += '<div class="team-hc-row">';
+      hcHtml += '<span class="team-hc-icon">' + opt.icon + '</span>';
+      hcHtml += '<span class="team-hc-label">' + opt.name + '</span>';
+      hcHtml += '<span class="team-hc-names">' + (names || '-') + '</span>';
+      hcHtml += '<span class="team-hc-count">(' + members.length + '\uBA85)</span>';
+      hcHtml += '</div>';
+    });
+    hcHtml += '</div>';
+  });
+  document.getElementById('teamHeadcountContent').innerHTML = hcHtml;
+}
+
+// ===== 지도 동선 하이라이트 =====
+function highlightMapForPersonal(data) {
+  if (!data) return;
+  var spots = document.querySelectorAll('.map-spot');
+  var routesGroup = document.getElementById('mapTeamRoutes');
+  routesGroup.innerHTML = '';
+
+  // 해당 팀원이 방문하는 스팟 이름 수집
+  var visitedSpots = {};
+  ['d2', 'd3', 'd4'].forEach(function(day) {
+    var choice = data[day];
+    if (!choice) return;
+    var key = day + choice;
+    var spotNames = ACTIVITY_MAP_SPOTS[key] || [];
+    spotNames.forEach(function(name) {
+      if (!visitedSpots[day]) visitedSpots[day] = [];
+      visitedSpots[day].push(name);
+    });
+  });
+
+  // 모든 방문 스팟 이름 평탄화
+  var allVisited = [];
+  Object.keys(visitedSpots).forEach(function(day) {
+    visitedSpots[day].forEach(function(name) {
+      if (allVisited.indexOf(name) === -1) allVisited.push(name);
+    });
+  });
+
+  // 지도 스팟 하이라이트/딤 처리
+  spots.forEach(function(spot) {
+    var spotName = spot.getAttribute('data-name');
+    spot.classList.remove('team-highlight', 'team-dimmed');
+    if (allVisited.length > 0) {
+      if (allVisited.indexOf(spotName) !== -1) {
+        spot.classList.add('team-highlight');
+      } else {
+        spot.classList.add('team-dimmed');
+      }
+    }
+  });
+
+  // 동선 라인 그리기 (올드타운 → 각 관광지)
+  var svgNS = 'http://www.w3.org/2000/svg';
+  ['d2', 'd3', 'd4'].forEach(function(day) {
+    var daySpots = visitedSpots[day] || [];
+    var color = DAY_ROUTE_COLORS[day];
+    daySpots.forEach(function(spotName) {
+      var coord = SPOT_COORDS[spotName];
+      if (!coord) return;
+      var line = document.createElementNS(svgNS, 'line');
+      line.setAttribute('x1', OLDTOWN_CENTER.x);
+      line.setAttribute('y1', OLDTOWN_CENTER.y);
+      line.setAttribute('x2', coord.x);
+      line.setAttribute('y2', coord.y);
+      line.setAttribute('stroke', color);
+      line.setAttribute('class', 'map-route-personal show');
+      line.setAttribute('stroke-width', '2.5');
+      line.setAttribute('stroke-dasharray', '8,4');
+      line.setAttribute('fill', 'none');
+      line.setAttribute('opacity', '0.8');
+      routesGroup.appendChild(line);
+    });
+  });
+
+  // 범례 추가 (임시 텍스트)
+  var legendY = 640;
+  [{ day: 'd2', label: 'Day 2', color: DAY_ROUTE_COLORS.d2 },
+   { day: 'd3', label: 'Day 3', color: DAY_ROUTE_COLORS.d3 },
+   { day: 'd4', label: 'Day 4', color: DAY_ROUTE_COLORS.d4 }].forEach(function(item, i) {
+    if (!visitedSpots[item.day] || visitedSpots[item.day].length === 0) return;
+    var rect = document.createElementNS(svgNS, 'rect');
+    rect.setAttribute('x', 20 + i * 100);
+    rect.setAttribute('y', legendY);
+    rect.setAttribute('width', 20);
+    rect.setAttribute('height', 4);
+    rect.setAttribute('rx', '2');
+    rect.setAttribute('fill', item.color);
+    routesGroup.appendChild(rect);
+    var text = document.createElementNS(svgNS, 'text');
+    text.setAttribute('x', 45 + i * 100);
+    text.setAttribute('y', legendY + 5);
+    text.setAttribute('font-size', '10');
+    text.setAttribute('font-weight', '700');
+    text.setAttribute('fill', item.color);
+    text.textContent = item.label;
+    routesGroup.appendChild(text);
+  });
+}
+
+function clearMapHighlights() {
+  var spots = document.querySelectorAll('.map-spot');
+  spots.forEach(function(spot) {
+    spot.classList.remove('team-highlight', 'team-dimmed');
+  });
+  var routesGroup = document.getElementById('mapTeamRoutes');
+  if (routesGroup) routesGroup.innerHTML = '';
+}
+
+// ===== 초기화: URL hash에서 개인 일정 로드 =====
+(function() {
+  var personalData = getPersonalFromHash();
+  if (personalData && personalData.name) {
+    applyMyTripSelections(personalData);
+    // 결과 표시
+    var result = document.getElementById('mytripResult');
+    document.getElementById('mytripResultName').textContent = personalData.name + '\uB2D8\uC758 \uC77C\uC815';
+    var url = window.location.href;
+    document.getElementById('mytripResultUrl').textContent = url;
+
+    var summaryHtml = '';
+    ['d2', 'd3', 'd4'].forEach(function(day) {
+      var opt = ACTIVITY_OPTIONS[day] && ACTIVITY_OPTIONS[day][personalData[day]];
+      if (opt) {
+        var dayLabel = day === 'd2' ? 'Day 2' : day === 'd3' ? 'Day 3' : 'Day 4';
+        summaryHtml += '<span class="mytrip-result-tag">' + dayLabel + ': ' + opt.icon + ' ' + opt.name + '</span>';
+      }
+    });
+    document.getElementById('mytripResultSummary').innerHTML = summaryHtml;
+    result.classList.add('show');
+
+    // 지도 하이라이트
+    highlightMapForPersonal(personalData);
+
+    // localStorage에도 저장
+    try { localStorage.setItem(MYTRIP_KEY, JSON.stringify(personalData)); } catch(e) {}
+  } else {
+    // localStorage에서 로드
+    try {
+      var saved = JSON.parse(localStorage.getItem(MYTRIP_KEY));
+      if (saved && saved.name) {
+        applyMyTripSelections(saved);
+      }
+    } catch(e) {}
+  }
+
+  // 팀 렌더링
+  renderTeam();
+})();
+
 // ===== 관광 지도 인터랙션 =====
 (function() {
   var spots = document.querySelectorAll('.map-spot');
@@ -2935,6 +4423,12 @@ renderBookingDisplay();
       filterBtns.forEach(function(b) { b.classList.remove('active'); });
       this.classList.add('active');
       currentDay = this.getAttribute('data-map-day');
+      // 팀원 동선 하이라이트 해제
+      clearMapHighlights();
+      // 팀원 카드 활성화 해제
+      var teamCards = document.querySelectorAll('.team-card');
+      teamCards.forEach(function(c) { c.classList.remove('active'); });
+      document.getElementById('teamDetail').classList.remove('show');
       applyFilter();
     });
   });
